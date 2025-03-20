@@ -8,11 +8,9 @@ export default function NewCollection({ collection }) {
         return null;
     }
     return (
-        <div className="py-24">
+        <div className="pt-24">
             <div className="page-width">
-                <h2 className="mt-3 mb-3 tracking-widest font-semibold text-[#204780]">
-                    {collection.name}
-                </h2>
+                <h2 className="block mt-3 mb-3 tracking-widest font-semibold text-[#204780]">{collection.name}</h2>
                 <ProductList products={collection.products.items} countPerRow={4} />
             </div>
         </div>
@@ -62,6 +60,7 @@ export const query = `
     query query {
         collection (code: "newcollection") {
             collectionId
+            code
             name
             products (filters: [{key: "limit", operation: eq, value: "6"}]) {
                 items {

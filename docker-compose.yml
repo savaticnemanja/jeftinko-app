@@ -18,6 +18,8 @@ services:
       - database
     ports:
       - 8081:3000
+    volumes:
+    - media-data:/app/media
   
   database:
     image: postgres:16
@@ -40,3 +42,4 @@ networks:
 
 volumes:
   postgres-data:
+  media-data:

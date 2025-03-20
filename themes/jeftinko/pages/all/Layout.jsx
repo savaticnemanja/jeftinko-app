@@ -6,7 +6,18 @@ import "../../css/global.scss";
 import "./Layout.scss";
 import "./tailwind.scss";
 
-export default function Layout({ menu: { items } }) {
+export default function Layout({ menu: { items }, setting}) {
+
+  const encodedAddress = encodeURIComponent(
+    `${setting.storeAddress}, ${setting.storeCity}, ${setting.storePostalCode}`
+  );
+
+  const addressParts = [
+    setting.storeAddress,
+    setting.storeCity,
+    setting.storePostalCode
+  ].filter(Boolean).join(", ");
+
   return (
     <>
       <LoadingBar />
@@ -55,28 +66,29 @@ export default function Layout({ menu: { items } }) {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10 lg:gap-24 py-8">
             <div className="flex flex-col space-y-5">
               <a href="/">
-                <img src="/Logo.png" alt="eve" className="z-10"/>
+                <img src="/Logo.png" alt="eve"/>
               </a>
             </div>
             <div className="flex flex-col space-y-5">
-              <h3 className="text-white font-semibold mb-2">Kategorije</h3>
+              <h3 className="text-white text-3xl font-semibold mb-2">Kategorije</h3>
               {items.map((i, index) => (
               // eslint-disable-next-line react/no-array-index-key
-                <a className="text-white hover:text-[#FFB704]" href={i.url}>
+                <a className="text-white hover:text-[#FFB704]" href={i.url} key={index}>
               {i.name}
               </a>
               ))}
             </div>
             <div className="flex flex-col space-y-5">
-              <h3 className="text-white font-semibold mb-2">O nama</h3>
-              <a href="#" className="text-white hover:text-[#FFB704]">Kontakt</a>
-              <a href="#" className="text-white hover:text-[#FFB704]">Politika privatnosti</a>
-              <a href="#" className="text-white hover:text-[#FFB704]">Pravila korišćenja</a>
+              <h3 className="text-white text-3xl font-semibold mb-2">O nama</h3>
+              <a href="/contact-us" className="text-white hover:text-[#FFB704]">Kontakt</a>
+              <a href="/privacy-policy" className="text-white hover:text-[#FFB704]">Politika privatnosti</a>
+              <a href="/terms-of-use" className="text-white hover:text-[#FFB704]">Uslovi korišćenja</a>
             </div>
             <div className="flex flex-col space-y-5">
-              <h3 className="text-white font-semibold mb-2">Kontakt</h3>
-              <a href="mailto:test@test.com" className="text-white hover:text-[#FFB704]">kontakt@jeftinko.rs</a>
-              <a href="tel:+381651234567" className="text-white hover:text-[#FFB704]">+381 65 1234567</a>
+              {(setting.storeEmail || setting.storePhoneNumber) && <h3 className="text-white text-3xl font-semibold mb-2">Kontakt</h3>}
+              {addressParts && <a href={`https://www.google.com/maps/search/?api=1&query=${encodedAddress}`} className="text-white hover:text-[#FFB704]">{addressParts}</a>}
+              {setting.storeEmail && <a href={`mailto:${setting.storeEmail}`} className="text-white hover:text-[#FFB704]">{setting.storeEmail}</a>}
+              {setting.storePhoneNumber && <a href={`tel:${setting.storePhoneNumber}`} className="text-white hover:text-[#FFB704]">{setting.storePhoneNumber}</a>}
               <div className="flex space-x-4 pr-4">
                 <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512" fill="#FFB704">
@@ -126,4 +138,11 @@ export const query = `
         url
       }
     }
+  setting {
+    storeAddress
+    storeCity
+    storePostalCode
+    storeEmail
+    storePhoneNumber
+  }
 }`;

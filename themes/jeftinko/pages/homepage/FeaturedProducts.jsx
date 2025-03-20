@@ -8,9 +8,9 @@ export default function FeaturedProducts({ collection }) {
     return null;
   }
   return (
-    <div className="pt-3">
+    <div className="py-24">
       <div className="page-width">
-        <h2 className="mt-3 mb-3 tracking-widest font-semibold text-[#204780]">
+        <h2 href={`/${collection.collectionId}`} className="mt-3 mb-3 tracking-widest font-semibold text-[#204780]">
           {collection.name}
         </h2>
         <ProductList products={collection.products.items} countPerRow={4} />
@@ -60,7 +60,7 @@ export const layout = {
 
 export const query = `
   query query {
-    collection (code: "homepage") {
+    collection (code: "featuredproducts") {
       collectionId
       name
       products (filters: [{key: "limit", operation: eq, value: "6"}]) {

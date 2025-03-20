@@ -4,7 +4,7 @@ function Logo() {
   return (
     <div>
       <a href="/">
-        <img src="/Logo.png" alt="eve" className="z-10"/>
+        <img src="/Logo.png" alt="eve" className="relative z-10"/>
       </a>
     </div>
   );
