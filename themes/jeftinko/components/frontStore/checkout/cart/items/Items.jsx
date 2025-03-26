@@ -34,7 +34,7 @@ function Items({ items, setting: { priceIncludingTax } }) {
     <div id="shopping-cart-items">
       <table className="items-table listing">
         <thead>
-          <tr className='bg-[#9B5DE5] text-white font-semibold'>
+          <tr className='bg-[#9B5DE5] shadow-[5px_5px_0_0_rgba(0,0,0,0.125)] rounded-[8px] text-white font-semibold'>
             <td className='rounded-tl-[8px] rounded-bl-[8px]'>
               <span className='mx-4'>{_('Product')}</span>
             </td>

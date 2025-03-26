@@ -76,7 +76,7 @@ function Summary({
   return (
     <div className="summary">
       <div className="grid grid-cols-1 gap-8">
-          <div className='rounded-[8px] bg-[#00F5D4] h-[44.5px] flex items-center pl-4'>
+          <div className='rounded-[8px] bg-[#00F5D4] h-[44.5px] shadow-[5px_5px_0_0_rgba(0,0,0,0.125)] flex items-center pl-4'>
             <h4 className='text-[16px] font-semibold uppercase text-white'>{_('Order summary')}</h4>
           </div>
         <Area

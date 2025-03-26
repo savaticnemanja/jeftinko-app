@@ -2,24 +2,22 @@ import PropTypes from "prop-types";
 import React from "react";
 
 export default function Menu({ menu: { items } }) {
+  const colors = ['#9B5DE5', '#00F5D4', '#FEE440', '#FE6A3A', '#00BBF9'];
+
   return (
     <div className="main-menu self-center hidden md:block">
       <ul className="nav flex space-x-275 justify-content-center">
-          <li className="nav-item mr-10 py-5 rounded-[8px] [&:nth-child(1)]:bg-[#9B5DE5] shadow-[5px_5px_0_0_#00000020]">
-            <a className="nav-link cursor-pointer px-16 py-5 text-[#fff]" href="/">
-              Početna
+        {items.map((item, index) => (
+          <li
+            key={item.url}
+            className="nav-item mr-10 py-5 rounded-[8px] shadow-[5px_5px_0_0_#00000020]"
+            style={{ backgroundColor: colors[index % colors.length] }}
+          >
+            <a className="nav-link cursor-pointer px-16 py-5 text-[#fff]" href={item.url}>
+              {item.name}
             </a>
           </li>
-          <li className="nav-item mr-10 py-5 rounded-[8px] [&:nth-child(2)]:bg-[#00F5D4] shadow-[5px_5px_0_0_#00000020]">
-            <a className="nav-link cursor-pointer px-16 py-5 text-[#fff]" href="/about-us">
-              O nama
-            </a>
-          </li>
-          <li className="nav-item mr-10 py-5 rounded-[8px] [&:nth-child(3)]:bg-[#FEE440] shadow-[5px_5px_0_0_#00000020]">
-            <a className="nav-link cursor-pointer px-16 py-5 text-[#fff]" href="/contact">
-              Kontakt
-            </a>
-          </li>
+        ))}
       </ul>
     </div>
   );
@@ -38,7 +36,7 @@ Menu.propTypes = {
 
 export const layout = {
   areaId: "header",
-  sortOrder: 1,
+  sortOrder: 2,
 };
 
 export const query = `

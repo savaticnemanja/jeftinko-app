@@ -28,6 +28,23 @@ export default function MobileMenu({ menu: { items } }) {
           />
         </svg>
       </a>
+      {show && (
+        <ul className="nav justify-content-center">
+          {items.map((i, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <li className="nav-item" key={index}>
+              <a className="nav-link" href={i.url}>
+                {i.name}
+              </a>
+            </li>
+          ))}
+          <li className="nav-item">
+            <a className="nav-link hover:underline" href={"/page/contact"}>
+              Contact
+            </a>
+          </li>
+        </ul>
+      )}
     </div>
   );
 }
