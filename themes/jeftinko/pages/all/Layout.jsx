@@ -48,10 +48,11 @@ export default function Layout({ menu: { items }, setting}) {
           />
         </div>
       </div>
+      {/* TAJ TU TAJ TU */}
       <main className="content">
       <div className="main-banner-home"/>
-        <div className="page-width">
-          <div className="bg-[#F8FCFF] px-[22px] lg:px-[55px] py-20">
+        <div className="page-width flex">
+          <div className="bg-[#F8FCFF] px-[22px] lg:px-[55px] py-20 flex-1">
             <Area id="content" className="" noOuter />
           </div>
         </div>
@@ -61,7 +62,7 @@ export default function Layout({ menu: { items }, setting}) {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10 lg:gap-24 py-8">
             <div className="flex flex-col space-y-5">
               <a href="/">
-                <img src="./Logo.webp" alt="Logo"/>
+                <img src="./Logo.svg" alt="Logo"/>
               </a>
             </div>
             <div className="flex flex-col space-y-5">
@@ -74,10 +75,10 @@ export default function Layout({ menu: { items }, setting}) {
               ))}
             </div>
             <div className="flex flex-col space-y-5">
-              <h3 className="text-white text-3xl font-semibold mb-2">O nama</h3>
-              <a href="/contact-us" className="text-white hover:text-[#FFB704]">Kontakt</a>
+              <h3 className="text-white text-3xl font-semibold mb-2">Korisnički centar</h3>
               <a href="/privacy-policy" className="text-white hover:text-[#FFB704]">Politika privatnosti</a>
               <a href="/terms-of-use" className="text-white hover:text-[#FFB704]">Uslovi korišćenja</a>
+              <a href="/shipping-and-returns" className="text-white hover:text-[#FFB704]">Isporuka i povraćaj</a>
             </div>
             <div className="flex flex-col space-y-5">
               {(setting.storeEmail || setting.storePhoneNumber) && <h3 className="text-white text-3xl font-semibold mb-2">Kontakt</h3>}

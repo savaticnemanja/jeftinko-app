@@ -1,0 +1,5 @@
+{
+    "methods": ["GET"],
+    "path": "/shipping-and-returns",
+    "name": "Isporuka i povrat robe"
+}

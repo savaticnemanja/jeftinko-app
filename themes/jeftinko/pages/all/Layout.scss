@@ -209,6 +209,13 @@ h6 {
   margin: 0 auto;
 }
 
+.page-width-custom {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
 .product-list {
   background-color: #F8FCFF;
 }
@@ -257,4 +264,14 @@ table {
 
 button.outline {
   outline: none;
+}
+
+.header-logo {
+  width: 300px;
+  margin-bottom: 3.5rem;
+
+  @media only screen and (max-width: 768px) {
+    width: 200px;
+    margin-bottom: 2.5rem;
+  }
 }

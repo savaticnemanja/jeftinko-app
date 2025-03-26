@@ -24,6 +24,14 @@
         "showOutOfStockProduct": false
     },
     "system": {
-        "theme": "jeftinko"
+        "theme": "jeftinko",
+        "extensions": [
+            {
+                "name": "pages",
+                "resolve": "extensions/pages",
+                "enabled": true,
+                "priority": 10
+            }
+        ]
     }
 }
