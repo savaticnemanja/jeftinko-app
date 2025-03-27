@@ -6,10 +6,10 @@ services:
     restart: always
     environment:
       DB_HOST: database
-      DB_PORT: ${DB_PORT}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_USER: ${DB_USER}
-      DB_NAME: ${DB_NAME}
+      DB_PORT: 5432
+      DB_PASSWORD: "12345678"
+      DB_USER: postgres
+      DB_NAME: postgres
     networks:
       - jeftinko
     depends_on:
@@ -17,21 +17,21 @@ services:
     ports:
       - 8081:3000
     volumes:
-    - media-data:/app/media
-  
+      - media-data:/app/media
+
   database:
     image: postgres:16
     restart: unless-stopped
     volumes:
       - postgres-data:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_DB: ${DB_NAME}
-    ports:
-      - "${DB_PORT}:${DB_PORT}"
+      POSTGRES_PASSWORD: "12345678"
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
     networks:
       - jeftinko
+    ports:
+      - 5432:5432
 
 networks:
   jeftinko:
