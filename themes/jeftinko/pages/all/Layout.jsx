@@ -67,12 +67,10 @@ export default function Layout({ menu: { items }, setting}) {
             </div>
             <div className="flex flex-col space-y-5">
               <h3 className="text-white text-3xl font-semibold mb-2">Kategorije</h3>
-              {items.map((i, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-                <a className="text-white hover:text-[#FFB704]" href={i.url} key={index}>
-              {i.name}
-              </a>
-              ))}
+                <a className="text-white hover:text-[#FFB704]" href="/toys">Igračke</a>
+                <a className="text-white hover:text-[#FFB704]" href="/all-for-babies">Sve za bebe</a>
+                <a className="text-white hover:text-[#FFB704]" href="/footwear">Obuća</a>
+                <a className="text-white hover:text-[#FFB704]" href="/formal-wear">Svečani program</a>
             </div>
             <div className="flex flex-col space-y-5">
               <h3 className="text-white text-3xl font-semibold mb-2">Korisnički centar</h3>
