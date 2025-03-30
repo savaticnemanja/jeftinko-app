@@ -186,7 +186,8 @@ h6 {
 }
 .header {
   padding: 0 !important;
-  background-color: #FFB703;
+  background-color: #fff;
+  border-bottom: 1px solid #21468033;
   @media only screen and (min-width: 1200px) {
     padding-left: 50px;
     padding-right: 50px;
@@ -195,7 +196,7 @@ h6 {
 
 .social-wrapper {
   height: 75px;
-  background-color: #204780;
+  background-color: #214680;
 }
 
 .container {

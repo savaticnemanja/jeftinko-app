@@ -8,7 +8,7 @@ export default function NewCollection({ collection }) {
         return null;
     }
     return (
-        <div className="pt-24">
+        <div className="py-10 px-6">
             <div className="page-width">
                 <h2 className="block mt-3 mb-3 tracking-widest font-semibold text-[#204780]">{collection.name}</h2>
                 <ProductList products={collection.products.items} countPerRow={4} />
@@ -53,7 +53,7 @@ NewCollection.defaultProps = {
 
 export const layout = {
     areaId: "content",
-    sortOrder: 14,
+    sortOrder: 15,
 };
 
 export const query = `

@@ -8,7 +8,7 @@ export default function FeaturedProducts({ collection }) {
     return null;
   }
   return (
-    <div className="py-24">
+    <div className="py-10 px-6 bg-[#FFB704] rounded-[8px]">
       <div className="page-width">
         <h2 href={`/${collection.collectionId}`} className="mt-3 mb-3 tracking-widest font-semibold text-[#204780]">
           {collection.name}
@@ -55,7 +55,7 @@ FeaturedProducts.defaultProps = {
 
 export const layout = {
   areaId: "content",
-  sortOrder: 15,
+  sortOrder: 14,
 };
 
 export const query = `

@@ -13,14 +13,32 @@
     position: absolute;
     right: 0;
     left: 0;
-    padding: 1rem;
     width: 100vw;
     background-color: #FFB704;
     border-top: 1px solid #21468033;
     z-index: 1000;
+    li {
+      &:nth-child(1)  {
+        background-color: #9B5EE5;
+        padding: 2rem 1rem;
+      }
+      &:nth-child(2) {
+        background-color: #00F5D4;
+        padding: 2rem 1rem;
+      }
+      &:nth-child(3) {
+        background-color: #FEE440;
+        padding: 2rem 1rem;
+      }
+      &:nth-child(4) {
+        background-color: #FE6A3A;
+        padding: 2rem 1rem;
+      }
+    }
     .nav-item {
       padding: 1.5rem 0;
       border-bottom: 1px solid #21468022;
+      font-weight: 700;
       &:first {
         padding-top: 0;
       }

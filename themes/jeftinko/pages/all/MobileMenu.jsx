@@ -30,19 +30,26 @@ export default function MobileMenu({ menu: { items } }) {
       </a>
       {show && (
         <ul className="nav justify-content-center">
-          {items.map((i, index) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <li className="nav-item" key={index}>
-              <a className="nav-link" href={i.url}>
-                {i.name}
+            <li className="nav-item">
+              <a className="nav-link" href="/toys">
+                Igračke
               </a>
             </li>
-          ))}
-          <li className="nav-item">
-            <a className="nav-link hover:underline" href={"/page/contact"}>
-              Contact
-            </a>
-          </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/all-for-babies">
+                Sve za bebe
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/footwear">
+                Obuća
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/formal-wear">
+                Svečani program
+              </a>
+            </li>
         </ul>
       )}
     </div>
