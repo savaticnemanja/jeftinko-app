@@ -4,7 +4,6 @@ module.exports = (request, response, delegate, next) => {
     const { currentRoute } = request;
     
     // If user has already visited mascot page, let them proceed
-    console.log(request.session.visitedMascot);
     if (request.session && request.session.visitedMascot) {
         return next();
     }

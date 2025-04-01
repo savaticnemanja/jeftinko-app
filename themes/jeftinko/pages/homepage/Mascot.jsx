@@ -1,14 +1,17 @@
 import React, { useState } from "react";
+import Lottie from 'lottie-react';
+import mascotAnimation from "./mascot.json";
 import "./Mascot.scss";
 
 export default function Mascot() {
     const [step, setStep] = useState(0);
     const [category, setCategory] = useState("");
     const [price, setPrice] = useState("");
+    const [isVisible, setIsVisible] = useState(true);
 
     const handleHelpResponse = (response) => {
         if (response === "no") {
-            window.location.replace("/");
+            setIsVisible(false);
         } else {
             setStep(1);
         }
@@ -26,10 +29,18 @@ export default function Mascot() {
         );
     };
 
+    if (!isVisible) return null;
+
     return (
         <div className="page-container">
             <div className="mascot-container">
-                <img src="./mascot.svg" alt="Mascot" className="mascot" />
+                {/* <img src="./mascot.svg" alt="Mascot" className="mascot" /> */}
+                <Lottie
+                    animationData={mascotAnimation}
+                    loop={false}
+                    autoplay={true}
+                    className="mascot"
+                />
                 <div className="questionnaire">
                     {step === 0 && (
                         <div className="question">
@@ -61,4 +72,4 @@ export default function Mascot() {
 export const layout = {
     areaId: "content",
     sortOrder: 1,
-};
+}

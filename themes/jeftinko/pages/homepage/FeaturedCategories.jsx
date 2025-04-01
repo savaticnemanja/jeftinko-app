@@ -2,38 +2,20 @@ import React from "react";
 
 function FeaturedCategories() {
   return (
-    null
-    // <div className="page-width">
-    //   <div className="mb-2 mt-3">
-    //     <h2 className="text-center">OUR CATEGORIES</h2>
-    //   </div>
-    //   <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-    //     <div className="relative col-span-1 row-span-2 men-cat">
-    //       <img src="/men-banner.jpg" alt="Shop men" />
-    //       <a
-    //         className="absolute underline top-[20px] left-[20px] bg-white px-2"
-    //         href="#">
-    //         SHOP MEN
-    //       </a>
-    //     </div>
-    //     <div className="relative col-span-1 row-span-1 women-cat">
-    //       <img src="/women-banner.jpg" alt="Shop women" />
-    //       <a
-    //         className="absolute underline top-[20px] left-[20px] bg-white px-2"
-    //         href="#">
-    //         SHOP WOMEN
-    //       </a>
-    //     </div>
-    //     <div className="relative col-span-1 row-span-1 kid-cat">
-    //       <img src="/kid-banner.jpg" alt="Shop kids" />
-    //       <a
-    //         className="absolute underline top-[20px] left-[20px] bg-white px-2"
-    //         href="#">
-    //         SHOP KIDS
-    //       </a>
-    //     </div>
-    //   </div>
-    // </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-24 justify-between mb-10">
+            <a href="/toys" className="category-item shadow-[5px_5px_0px_0px_rgba(0,0,0,0.125)] rounded-[8px]">
+              <img src="./assets/category-toys.png" alt="Toys Category" className="rounded-[8px]"/>
+            </a>
+            <a href="/babies" className="category-item shadow-[5px_5px_0px_0px_rgba(0,0,0,0.125)] rounded-[8px]">
+              <img src="/assets/category-all-for-babies.png" alt="All for Babies Category" className="rounded-[8px]" />
+            </a>
+            <a href="/footwear" className="category-item shadow-[5px_5px_0px_0px_rgba(0,0,0,0.125)] rounded-[8px]">
+              <img src="/assets/category-footwear.png" alt="Footwear Category" className="rounded-[8px]" />
+            </a>
+            <a href="/formal-wear" className="category-item shadow-[5px_5px_0px_0px_rgba(0,0,0,0.125)] rounded-[8px]">
+              <img src="/assets/category-formal-wear.png" alt="Formal Wear Category" className="rounded-[8px]"/>
+            </a>
+          </div>
   );
 }
 

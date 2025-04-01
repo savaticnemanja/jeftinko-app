@@ -73,7 +73,7 @@ export default function Layout({ menu: { items }, setting}) {
             <div className="flex flex-col space-y-5">
               <h3 className="text-white text-3xl font-semibold mb-2">Kategorije</h3>
                 <a className="text-white hover:text-[#FFB704]" href="/toys">Igračke</a>
-                <a className="text-white hover:text-[#FFB704]" href="/all-for-babies">Sve za bebe</a>
+                <a className="text-white hover:text-[#FFB704]" href="/babies">Sve za bebe</a>
                 <a className="text-white hover:text-[#FFB704]" href="/footwear">Obuća</a>
                 <a className="text-white hover:text-[#FFB704]" href="/formal-wear">Svečani program</a>
             </div>

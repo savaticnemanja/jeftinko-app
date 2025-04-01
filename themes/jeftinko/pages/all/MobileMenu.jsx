@@ -36,7 +36,7 @@ export default function MobileMenu({ menu: { items } }) {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/all-for-babies">
+              <a className="nav-link" href="/babies">
                 Sve za bebe
               </a>
             </li>

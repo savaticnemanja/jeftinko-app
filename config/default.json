@@ -31,12 +31,6 @@
                 "resolve": "extensions/pages",
                 "enabled": true,
                 "priority": 10
-            },
-            {
-                "name": "mascot",
-                "resolve": "extensions/mascot",
-                "enabled": true,
-                "priority": 1
             }
         ]
     }

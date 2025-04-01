@@ -11,7 +11,7 @@ export default function Menu() {
             </a>
           </li>
           <li className="nav-item mr-10 py-5 rounded-[8px] [&:nth-child(2)]:bg-[#00F5D4] shadow-[5px_5px_0_0_#00000020]">
-            <a className="nav-link cursor-pointer px-16 py-5 text-[#fff] font-bold" href="/all-for-babies">
+            <a className="nav-link cursor-pointer px-16 py-5 text-[#fff] font-bold" href="/babies">
               Sve za bebe
             </a>
           </li>

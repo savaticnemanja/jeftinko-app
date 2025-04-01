@@ -12,6 +12,7 @@
     "user:changePassword": "evershop user:changePassword"
   },
   "dependencies": {
-    "@evershop/evershop": "1.2.2"
+    "@evershop/evershop": "1.2.2",
+    "lottie-react": "^2.4.1"
   }
 }
