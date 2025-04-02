@@ -62,9 +62,10 @@ export const query = `
             collectionId
             code
             name
-            products (filters: [{key: "limit", operation: eq, value: "6"}]) {
+            products (filters: [{key: "limit", operation: eq, value: "16"}]) {
                 items {
                     productId
+                    variantGroupId
                     name
                     price {
                         regular {

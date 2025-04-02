@@ -63,7 +63,7 @@ export const query = `
     collection (code: "featuredproducts") {
       collectionId
       name
-      products (filters: [{key: "limit", operation: eq, value: "6"}]) {
+      products (filters: [{key: "limit", operation: eq, value: "16"}]) {
         items {
           productId
           name

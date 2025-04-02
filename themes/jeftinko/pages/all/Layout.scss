@@ -276,3 +276,44 @@ button.outline {
     margin-bottom: 2.5rem;
   }
 }
+
+.main-banner-home {
+  width: 100vw; /* Full width of the viewport */
+  max-width: 1920px; /* Maximum width set to 1920px */
+  margin: 0 auto; /* Centers the div horizontally */
+  position: relative; /* Ensures that the child image is contained within */
+
+  .banner-image {
+    width: 100%; /* Makes the image fill the entire width of the container */
+    height: auto; /* Maintain the image's aspect ratio dynamically */
+  }
+
+  .container {
+    z-index: 1;
+  }
+  .button {
+    margin-top: 27px;
+  }
+  h2.h1 {
+    color: var(--primary);
+    letter-spacing: 0;
+    font-size: 3.2rem;
+    line-height: 4.2rem;
+    @media screen and (min-width: 768px) {
+      font-size: 5.5rem;
+      line-height: 6.5rem;
+    }
+  }
+}
+
+#app {
+  .header {
+    margin-bottom: 0;
+  }
+  .button {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+  }
+}

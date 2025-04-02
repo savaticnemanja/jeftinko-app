@@ -5,6 +5,7 @@ import LoadingBar from "@components/common/LoadingBar";
 import "../../css/global.scss";
 import "./Layout.scss";
 import "./tailwind.scss";
+import { menuItems } from "./menu";
 
 export default function Layout({ menu: { items }, setting}) {
 
@@ -55,7 +56,9 @@ export default function Layout({ menu: { items }, setting}) {
       </div>
       {/* TAJ TU TAJ TU */}
       <main className="content">
-      <div className="main-banner-home"/>
+        <div className="main-banner-home">
+          <img src="/main-banner.jpg" alt="Main Banner" className="banner-image" />
+        </div>
         <div className="page-width flex">
           <div className="bg-[#F8FCFF] px-[8px] lg:px-[55px] py-10 flex-1">
             <Area id="content" className="" noOuter />
@@ -72,10 +75,16 @@ export default function Layout({ menu: { items }, setting}) {
             </div>
             <div className="flex flex-col space-y-5">
               <h3 className="text-white text-3xl font-semibold mb-2">Kategorije</h3>
-                <a className="text-white hover:text-[#FFB704]" href="/toys">Igračke</a>
-                <a className="text-white hover:text-[#FFB704]" href="/babies">Sve za bebe</a>
-                <a className="text-white hover:text-[#FFB704]" href="/footwear">Obuća</a>
-                <a className="text-white hover:text-[#FFB704]" href="/formal-wear">Svečani program</a>
+              {menuItems.map((item) => (
+                <div key={item.url}>
+                  <a
+                    className="text-white hover:text-[#FFB704]"
+                    href={item.url}
+                  >
+                    {item.name}
+                  </a>
+                </div>
+              ))}
             </div>
             <div className="flex flex-col space-y-5">
               <h3 className="text-white text-3xl font-semibold mb-2">Korisnički centar</h3>
