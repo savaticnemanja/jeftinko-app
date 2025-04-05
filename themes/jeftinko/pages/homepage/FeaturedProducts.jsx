@@ -7,13 +7,27 @@ export default function FeaturedProducts({ collection }) {
   if (!collection) {
     return null;
   }
+  
+  // Filter products to keep only unique variantGroupId
+  const uniqueProducts = [];
+  const seenVariantGroups = new Set();
+  
+  for (const product of collection.products.items) {
+      if (!product.variantGroupId || !seenVariantGroups.has(product.variantGroupId)) {
+          uniqueProducts.push(product);
+          if (product.variantGroupId) {
+              seenVariantGroups.add(product.variantGroupId);
+          }
+      }
+  }
+
   return (
     <div className="py-10 px-6 bg-[#FFB704] rounded-[8px]">
       <div className="page-width">
         <h2 href={`/${collection.collectionId}`} className="mt-3 mb-3 tracking-widest font-semibold text-[#204780]">
           {collection.name}
         </h2>
-        <ProductList products={collection.products.items} countPerRow={4} />
+        <ProductList products={uniqueProducts} countPerRow={4} />
       </div>
     </div>
   );
@@ -27,6 +41,7 @@ FeaturedProducts.propTypes = {
       items: PropTypes.arrayOf(
         PropTypes.shape({
           productId: PropTypes.number.isRequired,
+          variantGroupId: PropTypes.string,
           name: PropTypes.string.isRequired,
           price: PropTypes.shape({
             regular: PropTypes.shape({
@@ -41,7 +56,7 @@ FeaturedProducts.propTypes = {
           image: PropTypes.shape({
             alt: PropTypes.string.isRequired,
             url: PropTypes.string.isRequired,
-          }).isRequired,
+          }),
           url: PropTypes.string.isRequired,
         })
       ).isRequired,
@@ -66,6 +81,7 @@ export const query = `
       products (filters: [{key: "limit", operation: eq, value: "16"}]) {
         items {
           productId
+          variantGroupId
           name
           price {
             regular {
@@ -76,7 +92,7 @@ export const query = `
               value
               text
             }
-            }
+          }
           image {
             alt
             url: listing
