@@ -30,8 +30,6 @@ services:
       POSTGRES_DB: postgres
     networks:
       - jeftinko
-    ports:
-      - 5432:5432
 
 networks:
   jeftinko:
