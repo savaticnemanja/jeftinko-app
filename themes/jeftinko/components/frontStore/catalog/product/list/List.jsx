@@ -22,7 +22,7 @@ export default function ProductList({ products = [], countPerRow = 3 }) {
       className = 'grid grid-cols-2 md:grid-cols-3 gap-8 lg:gap-24 justify-between';
       break;
     case 4:
-      className = 'grid grid-cols-2 md:grid-cols-6 gap-4 lg:gap-8 justify-between';
+      className = 'grid grid-cols-2 md:grid-cols-5 gap-4 lg:gap-8 justify-between';
       break;
     case 5:
       className = 'grid grid-cols-2 md:grid-cols-5 gap-8 lg:gap-24 justify-between';
