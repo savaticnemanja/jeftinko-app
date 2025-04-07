@@ -22,9 +22,9 @@ export default function NewCollection({ collection }) {
     }
     
     return (
-        <div className="my-6 px-4 lg:px-4 py-16 bg-[#fff]">
+        <div className="my-6 px-4 lg:px-4 py-8">
             <div className="page-width">
-                <h2 className="block mt-3 mb-12 tracking-widest font-semibold text-[#204780]">
+                <h2 className="block mt-3 mb-6 tracking-widest font-semibold text-[#204780]">
                     {collection.name}
                 </h2>
                 <ProductList products={uniqueProducts} countPerRow={4} />

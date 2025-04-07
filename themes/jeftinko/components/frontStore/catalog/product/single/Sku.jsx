@@ -3,7 +3,7 @@ import React from 'react';
 
 export function Sku({ sku }) {
   return (
-    <div className="product-single-sku text-[#214680bb]">
+    <div className="product-single-sku text-[#0050A0bb]">
       <span>Šifra proizvoda</span>
       <span>: </span>
       {sku}

@@ -35,7 +35,7 @@ $product-filter-colors: #9b5de5, #fe6a3a, #00bbf9, #fee440, #00f5d4, #ff006e, #8
     }
     .filter-heading {
       margin-bottom: 20px;
-      color: #214680;
+      color: #0050A0;
     }
   }
   .filter-option {
@@ -80,7 +80,7 @@ $product-filter-colors: #9b5de5, #fe6a3a, #00bbf9, #fee440, #00f5d4, #ff006e, #8
   input[type='range']::-webkit-slider-runnable-track {
     width: 200px;
     height: 2px;
-    background: #204780;
+    background: #012D73;
   }
   input[type='range']:nth-child(2)::-webkit-slider-runnable-track {
     background: none;
@@ -91,7 +91,7 @@ $product-filter-colors: #9b5de5, #fe6a3a, #00bbf9, #fee440, #00f5d4, #ff006e, #8
     width: 15px;
     margin-top: -7px;
     background: #fff;
-    border: 2px solid #204780;
+    border: 2px solid #012D73;
     border-radius: 25px;
     z-index: 1;
   }

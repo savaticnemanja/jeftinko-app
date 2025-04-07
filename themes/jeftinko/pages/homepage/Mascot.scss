@@ -8,7 +8,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 12;
     
     .mascot-container {
         display: flex;
@@ -43,7 +43,7 @@
         border: none;
         border-radius: 8px;
         cursor: pointer;
-        background-color: #214680;
+        background-color: #0050A0;
         color: white;
         transition: 0.3s;
     }

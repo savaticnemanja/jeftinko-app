@@ -47,7 +47,7 @@ function FeaturedCategories() {
   ];
 
   return (
-    <div className="grid grid-cols-3 md:grid-cols-6 gap-4 lg:gap-8 justify-between px-4 lg:px-4 py-5 my-6 bg-[#fff]">
+    <div className="grid grid-cols-3 md:grid-cols-6 gap-4 lg:gap-8 justify-between px-4 lg:px-4 py-5 my-6">
       {categories.map((category, index) => (
         <a
           key={index}

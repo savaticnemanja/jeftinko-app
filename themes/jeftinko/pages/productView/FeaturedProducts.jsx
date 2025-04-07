@@ -22,9 +22,9 @@ export default function FeaturedProducts({ collection }) {
   }
 
   return (
-    <div className="my-6 px-4 lg:px-4 py-16 bg-[#B5E1E2]">
+    <div className="my-6 px-4 lg:px-4 py-8">
       <div className="page-width">
-          <h2 className="mt-3 tracking-widest font-semibold text-[#204780]">{collection.name}</h2>
+          <h2 className="mt-3 mb-6 tracking-widest font-semibold text-[#204780]">{collection.name}</h2>
         <ProductList products={uniqueProducts} countPerRow={4} />
       </div>
     </div>
