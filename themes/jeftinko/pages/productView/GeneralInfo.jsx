@@ -28,14 +28,6 @@ export default function GeneralInfo({ product }) {
           },
           sortOrder: 10,
           id: 'productSinglePrice'
-        },
-        {
-          component: { default: Sku },
-          props: {
-            sku: product.sku
-          },
-          sortOrder: 20,
-          id: 'productSingleSku'
         }
       ]}
     />

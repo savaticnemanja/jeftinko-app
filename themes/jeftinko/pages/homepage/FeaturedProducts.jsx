@@ -22,11 +22,14 @@ export default function FeaturedProducts({ collection }) {
   }
 
   return (
-    <div className="py-10 px-6 bg-[#FFB704] rounded-[8px]">
+    <div className="my-6 px-4 lg:px-4 py-16 bg-[#B5E1E2]">
       <div className="page-width">
-        <h2 href={`/${collection.collectionId}`} className="mt-3 mb-3 tracking-widest font-semibold text-[#204780]">
-          {collection.name}
-        </h2>
+        <a href={`/category/${collection.collectionId}`} className="flex items-center gap-2 mb-12">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 text-[#204780]">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185zM9.75 9h.008v.008H9.75V9zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm4.125 4.5h.008v.008h-.008V13.5zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+          </svg>
+          <h2 className="mt-3 tracking-widest font-semibold text-[#204780]">{collection.name}</h2>
+        </a>
         <ProductList products={uniqueProducts} countPerRow={4} />
       </div>
     </div>

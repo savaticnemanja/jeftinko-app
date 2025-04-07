@@ -1,7 +1,7 @@
 .product-thumbnail-listing {
   background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 5px 5px 0px 0 rgba(0, 0, 0, 0.125);
+  border-radius: 4px;
+  box-shadow: 2px 3px 0px 0 rgba(0, 0, 0, 0.125);
   aspect-ratio: 1 / 1;
   color: #3131;
   display: flex;
@@ -16,6 +16,6 @@
     max-width: none;
     max-height: none;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 4px;
   }
 }

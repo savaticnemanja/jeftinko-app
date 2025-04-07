@@ -5,7 +5,7 @@ import { menuItems } from "./menu";
 export default function Menu({ menu }) {
   const [activeSubmenu, setActiveSubmenu] = useState(null);
 
-  const colors = ["#9B5DE5", "#00F5D4", "#FEE440", "#FE6A3A", "#00D2D3"]; // Added extra colors for additional items
+  const colors = ["#F5E100", "#01F5A4", "#01F5E5", "#F5016F", "#D001F5", "#00B4F5"];
 
   const handleMouseEnter = (index) => {
     setActiveSubmenu(index);
@@ -24,7 +24,7 @@ export default function Menu({ menu }) {
             className="nav-item mx-4 py-5 rounded-[8px] relative group"
             style={{
               backgroundColor: activeSubmenu === index ? colors[index] : colors[index],
-              boxShadow: "5px 5px 0 0 #00000020"
+              boxShadow: "2px 3px 0 0 #00000020"
             }}
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={handleMouseLeave}
@@ -38,7 +38,7 @@ export default function Menu({ menu }) {
             
             {item.submenu && item.submenu.length > 0 && (
               <ul
-                className={`absolute left-0 mt-4 w-48 rounded-md shadow-lg z-10 ${activeSubmenu === index ? 'block' : 'hidden'}`}
+                className={`absolute top-[36px] left-0 w-72 rounded-[8px] shadow-lg z-20 ${activeSubmenu === index ? 'block' : 'hidden'}`}
                 style={{ backgroundColor: colors[index] }}
               >
                 {item.submenu.map((subItem, subIndex) => (

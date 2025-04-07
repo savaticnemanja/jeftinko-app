@@ -36,16 +36,38 @@ export default function MobileMenu() {
       {show && (
         <ul className="nav justify-content-center">
           {menuItems.map((item, index) => (
-            <li key={index} className="nav-item">
+            <li key={index} className="nav-item"
+            onClick={() => {
+              toggleSubmenu(index);
+            }}>
+              <span>
               <a
                 className="nav-link"
                 href={item.url}
-                onClick={(e) => {
-                  e.preventDefault();
-                  toggleSubmenu(index);
+                onClick={() => {
+                  setShow(false);
                 }}>
                 {item.name}
               </a>
+              {item.submenu && (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className={`h-8 w-8 inline-block transform ${
+                      activeIndex === index ? 'rotate-180' : ''
+                    }`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                )}
+                </span>
               {activeIndex === index && item.submenu && (
                 <ul className="submenu">
                   {item.submenu.map((subItem, subIndex) => (

@@ -12,15 +12,6 @@ export const menuItems = [
       ],
     },
     {
-      name: "Sve za bebe",
-      url: "/babies",
-      submenu: [
-        { name: "Odeća", url: "/babies/clothing" },
-        { name: "Obuća", url: "/babies/baby-footwear" },
-        { name: "Igračke", url: "/babies/baby-toys" },
-      ],
-    },
-    {
       name: "Obuća",
       url: "/footwear",
       submenu: [
@@ -30,6 +21,10 @@ export const menuItems = [
         { name: "Štiklice", url: "/footwear/heels" },
         { name: "Cipele", url: "/footwear/shoes" },
       ],
+    },
+    {
+      name: "Odeća",
+      url: "/clothing",
     },
     {
       name: "Svečani program",
@@ -45,8 +40,16 @@ export const menuItems = [
       ],
     },
     {
+      name: "Sve za bebe",
+      url: "/babies",
+      submenu: [
+        { name: "Odeća", url: "/babies/clothes" },
+        { name: "Obuća", url: "/babies/baby-footwear" },
+        { name: "Igračke", url: "/babies/baby-toys" },
+      ],
+    },
+    {
       name: "Nameštaj",
       url: "/furniture",
-      submenu: [],
     },
   ];

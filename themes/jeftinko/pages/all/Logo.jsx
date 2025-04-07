@@ -4,7 +4,7 @@ function Logo() {
   return (
     <div>
         <a href="/">
-          <img src="https://jeftinko.rs/Logo.svg" alt="Logo" className="header-logo"/>
+          <img src="/logo.svg" alt="Logo" className="header-logo"/>
         </a>
     </div>
   );

@@ -12,35 +12,30 @@ export default function Mascot() {
 
     const handleHelpResponse = (response) => {
         if (response === "no") {
-            setIsVisible(false); // Hide mascot when the answer is "No"
+            setIsVisible(false);
         } else {
-            setStep(1); // Continue to the next step if the answer is "Yes"
+            setStep(1);
         }
     };
 
     const handleGenderSelect = (selectedGender) => {
         setGender(selectedGender);
-        setStep(2); // Proceed to next step
+        setStep(2);
     };
 
     const handleAgeSelect = (selectedAge) => {
         setAge(selectedAge);
-        setStep(3); // Proceed to next step
+        setStep(3);
     };
 
     const handleCategorySelect = (selectedCategory) => {
-        setCategory(selectedCategory);
-        setStep(5); // Proceed to price selection
-    };
-
-    const handlePriceSelect = (selectedPrice) => {
+        // Directly navigate to the filtered page without price selection
         window.location.replace(
-            `https://jeftinko.rs/formal-wear?gender%5Boperation%5D=in&gender%5Bvalue%5D=${gender}&age-group%5Boperation%5D=in&age-group%5Bvalue%5D=${age}&max_price=${selectedPrice}`
+            `https://jeftinko.rs/${selectedCategory}?gender%5Boperation%5D=in&gender%5Bvalue%5D=${gender}&age-group%5Boperation%5D=in&age-group%5Bvalue%5D=${age}`
         );
     };
 
     useEffect(() => {
-        // Check if mascot has been seen in this session
         const mascotSeen = sessionStorage.getItem('mascotSeen');
         if (!mascotSeen) {
             setIsVisible(true);
@@ -88,25 +83,9 @@ export default function Mascot() {
 
                     {step === 3 && (
                         <div className="question">
-                            <p>Kupuješ za poklon ili za svoje dete?</p>
-                            <button onClick={() => setStep(4)}>Poklon</button>
-                            <button onClick={() => setStep(4)}>Moje dete</button>
-                        </div>
-                    )}
-
-                    {step === 4 && (
-                        <div className="question">
                             <p>Da li želiš igračku ili garderobu?</p>
                             <button onClick={() => handleCategorySelect("toys")}>Igračka</button>
                             <button onClick={() => handleCategorySelect("formal-wear")}>Garderoba</button>
-                        </div>
-                    )}
-
-                    {step === 5 && (
-                        <div className="question">
-                            <p>Do 3000 din ili 5000 din?</p>
-                            <button onClick={() => handlePriceSelect("3000")}>3000 din</button>
-                            <button onClick={() => handlePriceSelect("5000")}>5000 din</button>
                         </div>
                     )}
                 </div>
