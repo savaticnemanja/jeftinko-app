@@ -38,8 +38,8 @@ function Items({ items, setting: { priceIncludingTax } }) {
             <td className='rounded-tl-[8px] rounded-bl-[8px]'>
               <span className='mx-4'>{_('Product')}</span>
             </td>
-            <td>
-              <span>{_('Price')}</span>
+            <td className='rounded-tr-[8px] rounded-br-[8px]'>
+              <span className='pr-4'>{_('Price')}</span>
             </td>
             <td className="hidden md:table-cell">
               <span>{_('Quantity')}</span>

@@ -121,17 +121,16 @@ $product-filter-colors: #9b5de5, #fe6a3a, #00bbf9, #fee440, #00f5d4, #ff006e, #8
   .filter-opener,
   .filter-closer {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
-    width: 35px;
-    height: 35px;
+    bottom: 25px;
+    right: 20px;
+    padding: 1rem 2rem;
   }
   
   .filter-opener,
   .filter-closer {
     z-index: 998;
-    background: #fff;
-    border-radius: 50%;
+    background: #FFB704;
+    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     justify-content: center;
     align-items: center;

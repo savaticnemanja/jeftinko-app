@@ -18,14 +18,18 @@ export default function Mascot() {
         }
     };
 
+    const handlePresentType = () => {
+        setStep(2);
+    };
+
     const handleGenderSelect = (selectedGender) => {
         setGender(selectedGender);
-        setStep(2);
+        setStep(3);
     };
 
     const handleAgeSelect = (selectedAge) => {
         setAge(selectedAge);
-        setStep(3);
+        setStep(4);
     };
 
     const handleCategorySelect = (selectedCategory) => {
@@ -57,7 +61,7 @@ export default function Mascot() {
                 <div className="questionnaire">
                     {step === 0 && (
                         <div className="question">
-                            <p>Treba ti pomoć?</p>
+                            <p>Treba ti pomoć pri kupovini?</p>
                             <button onClick={() => handleHelpResponse("yes")}>Da</button>
                             <button onClick={() => handleHelpResponse("no")}>Ne</button>
                         </div>
@@ -66,22 +70,29 @@ export default function Mascot() {
                     {step === 1 && (
                         <div className="question">
                             <p>Tu sam!</p>
-                            <p>Pol deteta?</p>
-                            <button onClick={() => handleGenderSelect("male")}>Muško</button>
-                            <button onClick={() => handleGenderSelect("8")}>Žensko</button>
+                            <p>Kupuješ na poklon ili za svoje dete?</p>
+                            <button onClick={() => handlePresentType()}>Poklon</button>
+                            <button onClick={() => handlePresentType()}>Za svoje dete</button>
                         </div>
                     )}
 
                     {step === 2 && (
                         <div className="question">
-                            <p>Koji je uzrast deteta?</p>
-                            <button onClick={() => handleAgeSelect("46")}>Beba</button>
-                            <button onClick={() => handleAgeSelect("child")}>Dete</button>
-                            <button onClick={() => handleAgeSelect("teen")}>Tinejdžer</button>
+                            <p>Pol deteta?</p>
+                            <button onClick={() => handleGenderSelect("7")}>Muško</button>
+                            <button onClick={() => handleGenderSelect("8")}>Žensko</button>
                         </div>
                     )}
 
                     {step === 3 && (
+                        <div className="question">
+                            <p>Koji je uzrast?</p>
+                            <button onClick={() => handleAgeSelect("46")}>Beba</button>
+                            <button onClick={() => handleAgeSelect("child")}>Dete</button>
+                        </div>
+                    )}
+
+                    {step === 4 && (
                         <div className="question">
                             <p>Da li želiš igračku ili garderobu?</p>
                             <button onClick={() => handleCategorySelect("toys")}>Igračka</button>

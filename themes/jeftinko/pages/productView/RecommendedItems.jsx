@@ -3,7 +3,7 @@ import { _ } from "@evershop/evershop/src/lib/locale/translate";
 import PropTypes from "prop-types";
 import React from "react";
 
-export default function FeaturedProducts({ collection }) {
+export default function RecommendedItems({ collection }) {
   if (!collection) {
     return null;
   }
@@ -31,7 +31,7 @@ export default function FeaturedProducts({ collection }) {
   );
 }
 
-FeaturedProducts.propTypes = {
+RecommendedItems.propTypes = {
   collection: PropTypes.shape({
     collectionId: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
@@ -62,8 +62,8 @@ FeaturedProducts.propTypes = {
   }).isRequired,
 };
 
-FeaturedProducts.defaultProps = {
-  featuredProducts: [],
+RecommendedItems.defaultProps = {
+  recommendedItems: [],
 };
 
 export const layout = {

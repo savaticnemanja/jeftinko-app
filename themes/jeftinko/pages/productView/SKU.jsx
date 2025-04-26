@@ -1,23 +1,18 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Area from '@components/common/Area';
-import './GeneralInfo.scss';
-import { Name } from '@components/frontStore/catalog/product/single/Name';
-import { Price } from '@components/frontStore/catalog/product/single/Price';
 import { Sku } from '@components/frontStore/catalog/product/single/Sku';
 
 export default function GeneralInfo({ product }) {
   return (
     <Area
-      id="productViewGeneralInfo"
+      id="SKUInfo"
       className="mt-8"
       coreComponents={[
         {
           component: { default: Sku },
-          props: {
-            sku: product.sku
-          },
-          sortOrder: 31,
+          props: { sku: product.sku },
+          sortOrder: 21,
           id: 'productSingleSku'
         }
       ]}
@@ -27,18 +22,7 @@ export default function GeneralInfo({ product }) {
 
 GeneralInfo.propTypes = {
   product: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    sku: PropTypes.string.isRequired,
-    price: PropTypes.shape({
-      regular: PropTypes.shape({
-        value: PropTypes.number.isRequired,
-        text: PropTypes.string.isRequired
-      }),
-      special: PropTypes.shape({
-        value: PropTypes.number.isRequired,
-        text: PropTypes.string.isRequired
-      })
-    })
+    sku: PropTypes.string.isRequired
   }).isRequired
 };
 
