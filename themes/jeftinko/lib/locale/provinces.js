@@ -2545,7 +2545,6 @@ module.exports.provinces = [
     { code: 'RO-VL', countryCode: 'RO', name: 'Valcea' },
     { code: 'RO-VS', countryCode: 'RO', name: 'Vaslui' },
     { code: 'RO-VN', countryCode: 'RO', name: 'Vrancea' },
-    { code: "RS-77-201", countryCode: "RS", name: "ATEST" },
     { code: "RS-77-201", countryCode: "RS", name: "Ada" },
     { code: "RS-95-001", countryCode: "RS", name: "Aleksandrovac" },
     { code: "RS-92-002", countryCode: "RS", name: "Aleksinac" },
