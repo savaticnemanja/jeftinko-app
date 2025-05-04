@@ -34,11 +34,11 @@ function Items({ items, setting: { priceIncludingTax } }) {
     <div id="shopping-cart-items">
       <table className="items-table listing">
         <thead>
-          <tr className='bg-[#9B5DE5] shadow-[5px_5px_0_0_rgba(0,0,0,0.125)] rounded-[8px] text-white font-semibold'>
+          <tr className='bg-[#9B5DE5] shadow-[5px_5px_0_0_rgba(0,0,0,0.125)] rounded-[8px]  text-white font-semibold'>
             <td className='rounded-tl-[8px] rounded-bl-[8px]'>
               <span className='mx-4'>{_('Product')}</span>
             </td>
-            <td className='rounded-tr-[8px] rounded-br-[8px]'>
+            <td className='md:rounded-[0px] rounded-tr-[8px] rounded-br-[8px]'>
               <span className='pr-4'>{_('Price')}</span>
             </td>
             <td className="hidden md:table-cell">

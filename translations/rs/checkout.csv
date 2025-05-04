@@ -52,3 +52,10 @@ Payment, Plaćanje
 Add a note to your order,Dodaj napomenu za porudžbinu
 Save,Sačuvaj
 Sub total,Predračun
+Invalid coupon,Nevažeći kupon
+Coupon applied successfully!,Kupon je uspešno primenjen!
+Something wrong. Please reload the page!,Došlo je do greške, molimo Vas osvežite stranicu!
+Failed to save note,Greška pri čuvanju napomene!
+Note saved successfully,Napomena je uspešno sačuvana
+Address is required,Adresa je obavezna
+City is required,Mesto je obavezno

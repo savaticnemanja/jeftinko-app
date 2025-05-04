@@ -7,6 +7,28 @@ import './Variants.scss';
 import { useAppDispatch } from '@components/common/context/app';
 import { _ } from '@evershop/evershop/src/lib/locale/translate';
 
+const colorMap = {
+  "Braon": "#8B4513",
+  "Maslinasta": "#808000",
+  "Krem": "#FFFDD0",
+  "Plava": "#0000FF",
+  "Teget": "#001F5B",
+  "Zelena": "#008000",
+  "Crvena": "#FF0000",
+  "Narandžasta": "#FFA500",
+  "Žuta": "#FFFF00",
+  "Bordo": "#800000",
+  "Ljubičasta": "#800080",
+  "Roze": "#FFC0CB",
+  "Zlatna": "#FFD700",
+  "Srebrna": "#C0C0C0",
+  "Crna": "#000000",
+  "Bela": "#FFFFFF",
+  "Siva": "#808080",
+  "Bež": "#F5F5DC"
+};
+
+
 // Chevron Icon
 const ChevronIcon = ({ isOpen }) => (
   <svg
@@ -186,64 +208,90 @@ export default function Variants({
   );
 
   return (
-    <div className="variant variant-container grid grid-cols-1 gap-4 mt-8">
-      <p className="font-bold text-[18px] text-[#0150A0]">Veličina:</p>
-      {attributes.map((a, i) => {
-        const options = a.options.filter(
-          (v, j, s) =>
-            s.findIndex((o) => o.optionId === v.optionId) === j && v.productId
-        );
-        return (
-          <div key={a.attributeCode}>
-            <input name={`variant_options[${i}][attribute_id]`} type="hidden" value={"a.attributeId" || ''} />
-            <input name={`variant_options[${i}][optionId]`} type="hidden" value={a.selectedOption || ''} />
-            <div className="mb-2 text-textSubdued uppercase">
-              <span>{a.attribute_name}</span>
-            </div>
-            <ul className="variant-option-list flex justify-start gap-4 flex-wrap">
-              {options.map((o, index) => {
-                const shadowColors = ["#F5E100", "#01F5A4", "#01F5E5", "#F5016F", "#D001F5", "#00B4F5"];
-                const shadowColor = shadowColors[index % shadowColors.length];
-                const isSelected = a.selected && a.selectedOption === o.optionId;
-                const isUnavailable = o.available === false;
-                const classes = [
-                  "inline-block px-6 py-2 font-bold text-black text-center rounded-sm bg-white",
-                  "transition-all duration-100 transform",
-                  isUnavailable ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
-                  isSelected ? "ring-2 ring-offset-2 ring-black" : "",
-                ].join(" ");
+<div className="variant variant-container grid grid-cols-1 gap-4 mt-8">
+  {attributes.map((attribute, i) => {
+    const {
+      attributeCode,
+      attributeId,
+      attribute_name,
+      selectedOption,
+      selected,
+      options: rawOptions
+    } = attribute;
 
-                return (
-                  <li key={o.optionId}>
-                    <a
-                      href="#"
-                      className={classes}
-                      style={{
-                        boxShadow: `6px 6px 0 ${shadowColor}`,
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = "translate(2px, 2px)";
-                        e.currentTarget.style.boxShadow = `4px 4px 0 ${shadowColor}`;
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = "translate(0, 0)";
-                        e.currentTarget.style.boxShadow = `6px 6px 0 ${shadowColor}`;
-                      }}
-                      onClick={async (e) => {
-                        e.preventDefault();
-                        if (!o.available) return;
-                        await onClick(a.attributeCode, o.optionId);
-                      }}
-                    >
-                      {o.optionText}
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        );
-      })}
+    const options = rawOptions.filter(
+      (option, index, self) =>
+        self.findIndex(o => o.optionId === option.optionId) === index && option.productId
+    );
+
+    const isSizeAttribute = attributeCode.toLowerCase().includes('size');
+    const label = isSizeAttribute ? 'Veličina:' : 'Boja:';
+
+    return (
+      <div key={attributeCode}>
+        <input name={`variant_options[${i}][attribute_id]`} type="hidden" value={attributeId || ''} />
+        <input name={`variant_options[${i}][optionId]`} type="hidden" value={selectedOption || ''} />
+
+        <p className="font-bold text-[18px] text-[#0150A0] mb-4">{label}</p>
+
+        <div className="mb-2 text-textSubdued uppercase">
+          <span>{attribute_name}</span>
+        </div>
+
+        <ul className="variant-option-list flex justify-start gap-4 flex-wrap">
+          {options.map((option) => {
+            const { optionId, optionText, available } = option;
+
+            const isSelected = selected && selectedOption === optionId;
+            const isUnavailable = available === false;
+
+            const shadowColor = isSizeAttribute
+              ? "#D1D5DB" // neutral gray for size
+              : colorMap[optionText.trim()] || "#000000";
+
+            const classes = [
+              "inline-block px-6 py-2 font-bold text-[#012D73] text-center rounded-sm bg-white",
+              "transform transition-all duration-150",
+              "hover:translate-x-[2px] hover:translate-y-[2px]",
+              isSelected ? "ring-2 ring-offset-2" : "",
+              isUnavailable ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+            ].join(" ");
+
+            const boxShadowStyle = {
+              boxShadow: isSelected
+                ? isSizeAttribute
+                  ? `inset 0 0 0 3px ${shadowColor}`
+                  : `4px 4px 0 ${shadowColor}, inset 0 0 0 2px ${shadowColor}`
+                : isSizeAttribute
+                ? `2px 2px 0 ${shadowColor}`
+                : `4px 4px 0 ${shadowColor}`
+            };
+
+            const handleClick = async (e) => {
+              e.preventDefault();
+              if (!available) return;
+              await onClick(attributeCode, optionId);
+            };
+
+            return (
+              <li key={optionId}>
+                <a
+                  href="#"
+                  className={classes}
+                  style={boxShadowStyle}
+                  onClick={handleClick}
+                >
+                  {optionText}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  })}
+
+
       <div className="mt-4">
         <button
           type="button"
