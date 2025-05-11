@@ -26,7 +26,7 @@ export const menuItems = [
     { name: "Muzičke igračke", url: "/toys/musical-toys" },
     { name: "Autići", url: "/toys/toy-cars" },
     { name: "Plišane igračke", url: "/toys/plush-toys" },
-    { name: "Ostalo", url: "/toys/other" },
+    { name: "Ostalo", url: "/toys/other-toys" },
     ],
   },
   {
@@ -54,7 +54,7 @@ export const menuItems = [
     submenu: [
     { name: "Haljine", url: "/formal-wear/dresses" },
     { name: "Odela", url: "/formal-wear/suits" },
-    { name: "Ostalo", url: "/formal-wear/trousers" },
+    { name: "Ostalo", url: "/formal-wear/other-formal-wear" },
     ],
   },
   {
