@@ -4,10 +4,69 @@ import "./MobileMenu.scss";
 
 export default function MobileMenu() {
   const [show, setShow] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndexes, setActiveIndexes] = useState([]);
 
-  const toggleSubmenu = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);
+  const toggleSubmenu = (indexes) => {
+    setActiveIndexes((prevIndexes) => {
+      const indexKey = indexes.join('-');
+      const exists = prevIndexes.some(item => item === indexKey);
+      
+      if (exists) {
+        return prevIndexes.filter(item => item !== indexKey);
+      } else {
+        return [...prevIndexes, indexKey];
+      }
+    });
+  };
+
+  const renderMenuItems = (items, parentIndexes = []) => {
+    return items.map((item, index) => {
+      const currentIndexes = [...parentIndexes, index];
+      const indexKey = currentIndexes.join('-');
+      const isActive = activeIndexes.includes(indexKey);
+
+      return (
+        <li key={indexKey} className="nav-item">
+          <span onClick={() => toggleSubmenu(currentIndexes)}>
+            <a
+              className="nav-link"
+              href={item.url}
+              onClick={(e) => {
+                if (item.submenu) {
+                  e.preventDefault();
+                } else {
+                  setShow(false);
+                }
+              }}>
+              {item.name}
+            </a>
+            {item.submenu && (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`h-8 w-8 inline-block transform ${
+                  isActive ? 'rotate-180' : ''
+                }`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            )}
+          </span>
+          {isActive && item.submenu && (
+            <ul className="submenu">
+              {renderMenuItems(item.submenu, currentIndexes)}
+            </ul>
+          )}
+        </li>
+      );
+    });
   };
 
   return (
@@ -35,50 +94,7 @@ export default function MobileMenu() {
       </a>
       {show && (
         <ul className="nav justify-content-center">
-          {menuItems.map((item, index) => (
-            <li key={index} className="nav-item"
-            onClick={() => {
-              toggleSubmenu(index);
-            }}>
-              <span>
-              <a
-                className="nav-link"
-                href={item.url}
-                onClick={() => {
-                  setShow(false);
-                }}>
-                {item.name}
-              </a>
-              {item.submenu && (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={`h-8 w-8 inline-block transform ${
-                      activeIndex === index ? 'rotate-180' : ''
-                    }`}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                )}
-                </span>
-              {activeIndex === index && item.submenu && (
-                <ul className="submenu">
-                  {item.submenu.map((subItem, subIndex) => (
-                    <li key={subIndex} className="submenu-item">
-                      <a href={subItem.url}>{subItem.name}</a>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          ))}
+          {renderMenuItems(menuItems)}
         </ul>
       )}
     </div>

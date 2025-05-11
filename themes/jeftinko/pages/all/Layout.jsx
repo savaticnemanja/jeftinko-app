@@ -19,7 +19,7 @@ export default function Layout({ menu: { items }, setting}) {
     setting.storePostalCode
   ].filter(Boolean).join(", ");
 
-  const formattedPhoneNumber = setting.storePhoneNumber.replace(/\D/g, '');
+  const formattedPhoneNumber = (setting.storePhoneNumber || '').replace(/\D/g, '');
 
   return (
     <>

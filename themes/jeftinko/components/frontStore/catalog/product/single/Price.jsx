@@ -2,6 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 function formatPrice(value) {
+  if (typeof value !== 'number') {
+    return '';
+  }
   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 

@@ -8,16 +8,16 @@
         "product": {
             "image": {
                 "thumbnail": {
-                    "width": 100,
-                    "height": 100
-                },
-                "listing": {
                     "width": 300,
                     "height": 300
                 },
+                "listing": {
+                    "width": 700,
+                    "height": 700
+                },
                 "single": {
-                    "width": 500,
-                    "height": 500
+                    "width": 1200,
+                    "height": 1200
                 }
             }
         },
