@@ -17,4 +17,5 @@ npm-debug.log*
 # Project-specific files
 node_modules
 .evershop
+media/
 .env

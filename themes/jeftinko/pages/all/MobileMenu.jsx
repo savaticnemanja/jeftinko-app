@@ -26,45 +26,50 @@ export default function MobileMenu() {
       const isActive = activeIndexes.includes(indexKey);
 
       return (
-        <li key={indexKey} className="nav-item">
-          <span onClick={() => toggleSubmenu(currentIndexes)}>
-            <a
-              className="nav-link"
-              href={item.url}
+      <li key={indexKey} className="nav-item w-full border-b border-white">
+        <div className="flex w-full items-center justify-between px-4 py-3">
+          <a
+            className="nav-link text-white font-semibold"
+            href={item.url}
+            onClick={(e) => {
+              if (item.submenu) {
+                setShow(false); // or remove this if you don't want it to close on parent click
+              }
+            }}
+          >
+            {item.name}
+          </a>
+
+          {item.submenu && (
+            <button
               onClick={(e) => {
-                if (item.submenu) {
-                  e.preventDefault();
-                } else {
-                  setShow(false);
-                }
-              }}>
-              {item.name}
-            </a>
-            {item.submenu && (
+                e.preventDefault();
+                toggleSubmenu(currentIndexes);
+              }}
+              className="ml-2"
+              aria-label="Toggle submenu"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className={`h-8 w-8 inline-block transform ${
+                className={`h-5 w-5 transform transition-transform ${
                   isActive ? 'rotate-180' : ''
                 }`}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
-            )}
-          </span>
-          {isActive && item.submenu && (
-            <ul className="submenu">
-              {renderMenuItems(item.submenu, currentIndexes)}
-            </ul>
+            </button>
           )}
-        </li>
+        </div>
+
+        {isActive && item.submenu && (
+          <ul className="submenu pl-4">
+            {renderMenuItems(item.submenu, currentIndexes)}
+          </ul>
+        )}
+      </li>
       );
     });
   };

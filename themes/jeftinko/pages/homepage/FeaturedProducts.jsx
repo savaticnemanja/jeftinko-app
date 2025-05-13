@@ -7,25 +7,17 @@ export default function FeaturedProducts({ collection }) {
   if (!collection) {
     return null;
   }
-  
-  // Filter products to keep only unique variantGroupId
-  const uniqueProducts = [];
-  const seenVariantGroups = new Set();
-  
-  for (const product of collection.products.items) {
-      if (!product.variantGroupId || !seenVariantGroups.has(product.variantGroupId)) {
-          uniqueProducts.push(product);
-          if (product.variantGroupId) {
-              seenVariantGroups.add(product.variantGroupId);
-          }
-      }
-  }
+
+  // No filtering – just use all products directly
+  const allProducts = collection.products.items;
 
   return (
     <div className="my-6 px-4 lg:px-4 py-8 bg-[#B5E1E2]">
       <div className="page-width">
-          <h2 className="mt-3 mb-6 tracking-widest font-semibold text-[#204780]">{collection.name}</h2>
-        <ProductList products={uniqueProducts} countPerRow={4} />
+        <h2 className="mt-3 mb-6 tracking-widest font-semibold text-[#204780]">
+          {collection.name}
+        </h2>
+        <ProductList products={allProducts} countPerRow={4} />
       </div>
     </div>
   );
@@ -76,7 +68,7 @@ export const query = `
     collection (code: "featuredproducts") {
       collectionId
       name
-      products (filters: [{key: "limit", operation: eq, value: "16"}]) {
+      products (filters: [{key: "limit", operation: eq, value: "20"}]) {
         items {
           productId
           variantGroupId

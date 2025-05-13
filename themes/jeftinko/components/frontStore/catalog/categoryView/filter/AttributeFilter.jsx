@@ -63,9 +63,26 @@ export function AttributeFilter({
     }
   };
 
+  // Sort available attributes by attributeName (ascending order)
+  const sortedAttributes = availableAttributes.sort((a, b) => {
+    const aName = a.attributeName.toString();
+    const bName = b.attributeName.toString();
+    return aName.localeCompare(bName, undefined, { numeric: true });
+  });
+
+  // Sort options for each attribute by optionText (ascending order)
+  const sortedAttributesWithOptions = sortedAttributes.map((a) => {
+    const sortedOptions = a.options.sort((o1, o2) => {
+      const o1Text = o1.optionText.toString();
+      const o2Text = o2.optionText.toString();
+      return o1Text.localeCompare(o2Text, undefined, { numeric: true });
+    });
+    return { ...a, options: sortedOptions };
+  });
+
   return (
     <>
-      {availableAttributes.map((a) => (
+      {sortedAttributesWithOptions.map((a) => (
         <div key={a.attributeCode} className="attribute-filter mt-8">
           <div className="filter-item-title">
             <span>{a.attributeName}</span>
