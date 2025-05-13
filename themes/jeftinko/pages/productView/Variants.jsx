@@ -291,7 +291,7 @@ export default function Variants({
     );
   })}
 
-
+    {currentProductUrl.startsWith('/footwear/') && (
       <div className="mt-4">
         <button
           type="button"
@@ -302,6 +302,7 @@ export default function Variants({
           <ChevronIcon isOpen={isModalOpen} />
         </button>
       </div>
+      )}
       {isModalOpen && (
         <div onClick={() => setIsModalOpen(false)}>
           <Modal onClose={() => setIsModalOpen(false)} />

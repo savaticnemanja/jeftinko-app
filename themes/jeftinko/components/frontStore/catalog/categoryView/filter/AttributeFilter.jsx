@@ -8,48 +8,40 @@ export function AttributeFilter({
 }) {
   const onChange = (e, attributeCode, optionId) => {
     e.preventDefault();
-    // Check if the attribute is already in the filter
     const index = currentFilters.findIndex((f) => f.key === attributeCode);
+
     if (index !== -1) {
       const value = currentFilters[index].value.split(',');
-      // Check if the option is already in the filter
       const optionIndex = value.findIndex((v) => v === optionId.toString());
+
       if (optionIndex !== -1) {
-        // Remove the option from the filter
         value.splice(optionIndex, 1);
         if (value.length === 0) {
-          // Remove the attribute from the filter
           updateFilter(currentFilters.filter((f) => f.key !== attributeCode));
         } else {
-          // Update the filter
           updateFilter(
-            currentFilters.map((f) => {
-              if (f.key !== attributeCode) {
-                return f;
-              } else {
-                return {
-                  key: attributeCode,
-                  operation: 'in',
-                  value: value.join(',')
-                };
-              }
-            })
+            currentFilters.map((f) =>
+              f.key !== attributeCode
+                ? f
+                : {
+                    key: attributeCode,
+                    operation: 'in',
+                    value: value.join(',')
+                  }
+            )
           );
         }
       } else {
-        // Add the option to the filter
         updateFilter(
-          currentFilters.map((f) => {
-            if (f.key !== attributeCode) {
-              return f;
-            } else {
-              return {
-                key: attributeCode,
-                operation: 'in',
-                value: value.concat(optionId).join(',')
-              };
-            }
-          })
+          currentFilters.map((f) =>
+            f.key !== attributeCode
+              ? f
+              : {
+                  key: attributeCode,
+                  operation: 'in',
+                  value: value.concat(optionId).join(',')
+                }
+          )
         );
       }
     } else {
@@ -57,14 +49,14 @@ export function AttributeFilter({
         currentFilters.concat({
           key: attributeCode,
           operation: 'in',
-          value: optionId
+          value: optionId.toString()
         })
       );
     }
   };
 
   // Sort available attributes by attributeName (ascending order)
-  const sortedAttributes = availableAttributes.sort((a, b) => {
+  const sortedAttributes = [...availableAttributes].sort((a, b) => {
     const aName = a.attributeName.toString();
     const bName = b.attributeName.toString();
     return aName.localeCompare(bName, undefined, { numeric: true });
@@ -72,7 +64,7 @@ export function AttributeFilter({
 
   // Sort options for each attribute by optionText (ascending order)
   const sortedAttributesWithOptions = sortedAttributes.map((a) => {
-    const sortedOptions = a.options.sort((o1, o2) => {
+    const sortedOptions = [...a.options].sort((o1, o2) => {
       const o1Text = o1.optionText.toString();
       const o2Text = o2.optionText.toString();
       return o1Text.localeCompare(o2Text, undefined, { numeric: true });
@@ -102,7 +94,7 @@ export function AttributeFilter({
                     className="flex justify-start items-center"
                     onClick={(e) => onChange(e, a.attributeCode, o.optionId)}
                   >
-                    {isChecked && (
+                    {isChecked ? (
                       <svg width="24px" height="24px" viewBox="0 0 24 24">
                         <g
                           stroke="none"
@@ -115,8 +107,7 @@ export function AttributeFilter({
                           </g>
                         </g>
                       </svg>
-                    )}
-                    {!isChecked && (
+                    ) : (
                       <svg width="24px" height="24px" viewBox="0 0 24 24">
                         <g
                           stroke="none"
