@@ -4,7 +4,7 @@ function FeaturedCategories() {
   const categories = [
     {
       href: "/toys",
-      bgColor: "#F5E100",
+      bgColor: "#FFC100",
       imageSrc: "./assets/category-toys.png",
       alt: "Kategorija igračaka",
       title: "Igračke"

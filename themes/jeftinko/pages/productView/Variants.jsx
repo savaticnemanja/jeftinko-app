@@ -135,6 +135,7 @@ export default function Variants({
   const attributeRef = React.useRef(
     !vs ? [] : processAttributes(vs, vs.variantAttributes, currentProductUrl)
   );
+  const [currentLocationpath, setCurrentLocationpath] = React.useState('');
 
   const validate = (formId, errors) => {
     if (formId !== 'productForm') return true;
@@ -150,6 +151,14 @@ export default function Variants({
   };
 
   React.useEffect(() => {
+
+    if (typeof window !== 'undefined') {
+      const currentPath = window.location.pathname;
+      const firstSegment = currentPath.split('/')[1];
+      setCurrentLocationpath(firstSegment);
+    }
+
+
     const token = PubSub.subscribe(FORM_VALIDATED, (message, data) => {
       validate(data.formId, data.errors);
     });
@@ -168,6 +177,7 @@ export default function Variants({
       PubSub.unsubscribe(token);
       window.removeEventListener('popstate', () => {});
     };
+    
   }, []);
 
   const onClick = async (attributeCode, optionId) => {
@@ -182,28 +192,59 @@ export default function Variants({
   };
 
   const Modal = ({ onClose }) => (
-    <div onClick={onClose} className="mt-4 overflow-x-auto border border-gray-200 rounded-lg shadow-sm bg-white">
-      <table className="size-guide-table min-w-full text-sm text-left text-gray-700" onClick={(e) => e.stopPropagation()}>
-        <thead className="bg-gray-100 text-gray-900 uppercase text-xs">
-          <tr>
-            <th scope="col" className="px-4 py-2">Dužina stopala (cm)</th>
-            <th scope="col" className="px-4 py-2">Veličina (EU)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {[
-            ["12,3", "20"], ["13", "21"], ["13,7", "22"], ["14,3", "23"],
-            ["14,9", "24"], ["15,5", "25"], ["16,2", "26"], ["16,8", "27"],
-            ["17,4", "28"], ["18,1", "29"], ["18,7", "30"], ["19,4", "31"],
-            ["20,1", "32"], ["20,7", "33"], ["21,4", "34"], ["22", "35"]
-          ].map(([length, size], i) => (
-            <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-              <td className="px-4 py-2">{length}</td>
-              <td className="px-4 py-2">{size}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div
+      onClick={onClose}
+      className="mt-4 overflow-x-auto border border-gray-200 rounded-lg shadow-sm bg-white"
+    >
+      <div onClick={(e) => e.stopPropagation()}>
+        {currentLocationpath === "footwear" ? (
+          <table className="size-guide-table min-w-full text-sm text-left text-gray-700">
+            <thead className="bg-gray-100 text-gray-900 uppercase text-xs">
+              <tr>
+                <th className="px-4 py-2">Dužina stopala (cm)</th>
+                <th className="px-4 py-2">Veličina (EU)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ["12,3", "20"], ["13", "21"], ["13,7", "22"], ["14,3", "23"],
+                ["14,9", "24"], ["15,5", "25"], ["16,2", "26"], ["16,8", "27"],
+                ["17,4", "28"], ["18,1", "29"], ["18,7", "30"], ["19,4", "31"],
+                ["20,1", "32"], ["20,7", "33"], ["21,4", "34"], ["22", "35"]
+              ].map(([length, size], i) => (
+                <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+                  <td className="px-4 py-2">{length}</td>
+                  <td className="px-4 py-2">{size}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <table className="size-guide-table min-w-full text-sm text-left text-gray-700">
+            <thead className="bg-gray-100 text-gray-900 uppercase text-xs">
+              <tr>
+                <th className="px-4 py-2">Visina deteta (cm)</th>
+                <th className="px-4 py-2">Meseci</th>
+                <th className="px-4 py-2">Godina</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ["62", "3", ""], ["68", "6", ""], ["74", "9", ""], ["80", "12", "1"],
+                ["86", "18", "1,5"], ["92", "24", "2"], ["98", "", "3"], ["104", "", "4"],
+                ["110", "", "5"], ["116", "", "6"], ["122", "", "7"], ["128", "", "8"],
+                ["134", "", "9"], ["140", "", "10"], ["148", "", "11"], ["152", "", "12"]
+              ].map(([height, months, years], i) => (
+                <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+                  <td className="px-4 py-2">{height}</td>
+                  <td className="px-4 py-2">{months}</td>
+                  <td className="px-4 py-2">{years}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
     </div>
   );
 
@@ -291,7 +332,7 @@ export default function Variants({
     );
   })}
 
-    {currentProductUrl.startsWith('/footwear/') && (
+    {["men", "formal-wear", "babies", "clothing"].includes(currentLocationpath) && (
       <div className="mt-4">
         <button
           type="button"

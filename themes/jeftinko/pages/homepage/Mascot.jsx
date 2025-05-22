@@ -6,8 +6,6 @@ import "./Mascot.scss";
 export default function Mascot() {
     const [step, setStep] = useState(0);
     const [category, setCategory] = useState("");
-    const [gender, setGender] = useState("");
-    const [age, setAge] = useState("");
     const [isVisible, setIsVisible] = useState(false);
 
     const handleHelpResponse = (response) => {
@@ -22,21 +20,17 @@ export default function Mascot() {
         setStep(2);
     };
 
-    const handleGenderSelect = (selectedGender) => {
-        setGender(selectedGender);
-        setStep(3);
-    };
-
-    const handleAgeSelect = (selectedAge) => {
-        setAge(selectedAge);
-        setStep(4);
-    };
-
     const handleCategorySelect = (selectedCategory) => {
-        // Directly navigate to the filtered page without price selection
-        window.location.replace(
-            `https://jeftinko.rs/${selectedCategory}?gender%5Boperation%5D=in&gender%5Bvalue%5D=${gender}&age-group%5Boperation%5D=in&age-group%5Bvalue%5D=${age}`
-        );
+        setCategory(selectedCategory);
+        setStep(3); // Next step is price selection
+    };
+
+    const handlePriceSelect = (maxPrice) => {
+        let url = `https://jeftinko.rs/${category}`;
+        if (maxPrice !== null) {
+            url += `?max_price=${maxPrice}`;
+        }
+        window.location.replace(url);
     };
 
     useEffect(() => {
@@ -71,32 +65,34 @@ export default function Mascot() {
                         <div className="question">
                             <p>Tu sam!</p>
                             <p>Kupuješ na poklon ili za svoje dete?</p>
-                            <button onClick={() => handlePresentType()}>Poklon</button>
-                            <button onClick={() => handlePresentType()}>Za svoje dete</button>
+                            <button onClick={handlePresentType}>Poklon</button>
+                            <button onClick={handlePresentType}>Za svoje dete</button>
                         </div>
                     )}
 
                     {step === 2 && (
                         <div className="question">
-                            <p>Pol deteta?</p>
-                            <button onClick={() => handleGenderSelect("7")}>Muško</button>
-                            <button onClick={() => handleGenderSelect("8")}>Žensko</button>
-                        </div>
-                    )}
-
-                    {step === 3 && (
-                        <div className="question">
-                            <p>Koji je uzrast?</p>
-                            <button onClick={() => handleAgeSelect("46")}>Beba</button>
-                            <button onClick={() => handleAgeSelect("child")}>Dete</button>
-                        </div>
-                    )}
-
-                    {step === 4 && (
-                        <div className="question">
-                            <p>Da li želiš igračku ili garderobu?</p>
+                            <p>Da li želiš igračku ili odeću?</p>
                             <button onClick={() => handleCategorySelect("toys")}>Igračka</button>
-                            <button onClick={() => handleCategorySelect("formal-wear")}>Garderoba</button>
+                            <button onClick={() => handleCategorySelect("clothing")}>Odeća</button>
+                        </div>
+                    )}
+
+                    {step === 3 && category === "toys" && (
+                        <div className="question">
+                            <p>Do kog iznosa?</p>
+                            <button onClick={() => handlePriceSelect(2000)}>Do 2.000 din</button>
+                            <button onClick={() => handlePriceSelect(5500)}>Do 5.500 din</button>
+                            <button onClick={() => handlePriceSelect(null)}>Pokaži sve</button>
+                        </div>
+                    )}
+
+                    {step === 3 && category === "clothing" && (
+                        <div className="question">
+                            <p>Do kog iznosa?</p>
+                            <button onClick={() => handlePriceSelect(1500)}>Do 1.500 din</button>
+                            <button onClick={() => handlePriceSelect(3500)}>Do 3.500 din</button>
+                            <button onClick={() => handlePriceSelect(null)}>Pokaži sve</button>
                         </div>
                     )}
                 </div>
@@ -108,4 +104,4 @@ export default function Mascot() {
 export const layout = {
     areaId: "content",
     sortOrder: 1,
-}
+};

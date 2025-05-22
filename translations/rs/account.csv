@@ -1,13 +1,14 @@
-Login,Login
-Logout,Logout
-Email,E-mail
-Password,Password
+Login,Ulogujte se
+Logout,Izlogujte se
+Email,E-mail adresa
+Password,Lozinka
 Forgot your password?,Zaboravili ste lozinku?
 Create an account,Napravite nalog
 Register,Registrujte se
 Full Name,Ime i prezime
 Full name,Ime i prezime
 SIGN IN,Prijavite se
+This field can not be empty,Polje je obavezno
 Order History,Istorija porudžbina
 Account Details,Detalji naloga
 Account details,Moj nalog
@@ -41,3 +42,4 @@ Create A New Account,Napravite novi nalog
 Contact,Kontakt
 Customer information,Podaci o kupcu
 Qty,Količina
+Email is already used,Email je povezan sa postojećim nalogom

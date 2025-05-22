@@ -6,7 +6,7 @@ export default function Menu({ menu }) {
   const [activeSubmenu, setActiveSubmenu] = useState(null);
   const [activeNestedSubmenu, setActiveNestedSubmenu] = useState(null);
 
-  const colors = ["#F5E100", "#01F5A4", "#01F5E5", "#F5016F", "#D001F5", "#00B4F5"];
+  const colors = ["#FFC100", "#01F5A4", "#01F5E5", "#F5016F", "#D001F5", "#00B4F5"];
 
   const handleMouseEnter = (index) => {
     setActiveSubmenu(index);
