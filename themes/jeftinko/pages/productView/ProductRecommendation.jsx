@@ -30,7 +30,7 @@ export default function ProductRecommendation({ clothing, footwear, toys }) {
     return null;
   }
 
-  const recommendedProducts = collection.products.items
+  const recommendedProducts = [...collection.products.items]
     .sort(() => Math.random() - 0.5)
     .slice(0, 6);
 
