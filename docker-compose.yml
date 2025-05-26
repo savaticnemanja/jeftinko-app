@@ -10,6 +10,7 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_USER: ${DB_USER}
       DB_NAME: ${DB_NAME}
+      RESEND_API_KEY: ${RESEND_API_KEY}
     networks:
       - jeftinko
     depends_on:

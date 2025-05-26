@@ -30,7 +30,7 @@
                 "name": "pages",
                 "resolve": "extensions/pages",
                 "enabled": true,
-                "priority": 10
+                "priority": 20
             },
             {
                 "name": "resend",
