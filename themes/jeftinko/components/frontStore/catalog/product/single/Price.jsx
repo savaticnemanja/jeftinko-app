@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from "prop-types";
+import React from "react";
 
 function formatPrice(value) {
-  if (typeof value !== 'number') {
-    return '';
+  if (typeof value !== "number") {
+    return "";
   }
   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -20,8 +20,18 @@ export function Price({ regular, special }) {
       )}
       {special.value < regular.value && (
         <div>
-          <span className="sale-price">{formatPrice(special.value)} RSD</span>{' '}
-          <span className="regular-price">{formatPrice(regular.value)} RSD</span>
+          <span className="sale-price">{formatPrice(special.value)} RSD</span>{" "}
+          <span className="regular-price line-through text-gray-500">
+            {formatPrice(regular.value)} RSD
+          </span>
+        </div>
+      )}
+      {special.value > regular.value && (
+        <div>
+          <span className="sale-price">{formatPrice(special.value)} RSD</span>{" "}
+          <span className="regular-price line-through text-gray-500">
+            {formatPrice(regular.value)} RSD
+          </span>
         </div>
       )}
     </h4>
@@ -31,10 +41,10 @@ export function Price({ regular, special }) {
 Price.propTypes = {
   regular: PropTypes.shape({
     value: PropTypes.number.isRequired,
-    text: PropTypes.string.isRequired
+    text: PropTypes.string.isRequired,
   }).isRequired,
   special: PropTypes.shape({
     value: PropTypes.number.isRequired,
-    text: PropTypes.string.isRequired
-  }).isRequired
+    text: PropTypes.string.isRequired,
+  }).isRequired,
 };
