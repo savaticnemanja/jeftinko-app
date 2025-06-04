@@ -20,7 +20,10 @@ export function Price({ regular, special }) {
       )}
       {special.value < regular.value && (
         <div>
-          <span className="sale-price">{formatPrice(special.value)} RSD</span>{" "}
+          <span className="sale-price text-critical font-semibold">
+            {formatPrice(special.value)} RSD
+          </span>{" "}
+          <br />
           <span className="regular-price line-through text-gray-500">
             {formatPrice(regular.value)} RSD
           </span>
@@ -28,7 +31,10 @@ export function Price({ regular, special }) {
       )}
       {special.value > regular.value && (
         <div>
-          <span className="sale-price">{formatPrice(special.value)} RSD</span>{" "}
+          <span className="sale-price text-critical font-semibold">
+            {formatPrice(special.value)} RSD
+          </span>{" "}
+          <br />
           <span className="regular-price line-through text-gray-500">
             {formatPrice(regular.value)} RSD
           </span>

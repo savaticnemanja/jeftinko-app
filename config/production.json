@@ -1,46 +1,52 @@
 {
-    "shop" : {
-        "currency": "RSD",
-        "language": "rs",
-        "weightUnit": "kg"
-    },   
-    "catalog": {
-        "product": {
-            "image": {
-                "thumbnail": {
-                    "width": 300,
-                    "height": 300
-                },
-                "listing": {
-                    "width": 700,
-                    "height": 700
-                },
-                "single": {
-                    "width": 1200,
-                    "height": 1200
-                }
-            }
+  "shop": {
+    "currency": "RSD",
+    "language": "rs",
+    "weightUnit": "kg"
+  },
+  "catalog": {
+    "product": {
+      "image": {
+        "thumbnail": {
+          "width": 300,
+          "height": 300
         },
-        "showOutOfStockProduct": false
+        "listing": {
+          "width": 700,
+          "height": 700
+        },
+        "single": {
+          "width": 1200,
+          "height": 1200
+        }
+      }
     },
-    "system": {
-        "theme": "jeftinko",
-        "extensions": [
-            {
-                "name": "pages",
-                "resolve": "extensions/pages",
-                "enabled": true,
-                "priority": 20
-            },
-            {
-                "name": "resend",
-                "resolve": "node_modules/@evershop/resend",
-                "enabled": true,
-                "priority": 10
-            }
-        ]
-    },
-    "resend": {
+    "showOutOfStockProduct": false
+  },
+  "system": {
+    "theme": "jeftinko",
+    "extensions": [
+      {
+        "name": "pages",
+        "resolve": "extensions/pages",
+        "enabled": true,
+        "priority": 20
+      },
+      {
+        "name": "product-old-price",
+        "resolve": "extensions/product-old-price",
+        "enabled": true,
+        "priority": 30
+      },
+      {
+        "name": "resend",
+        "resolve": "node_modules/@evershop/resend",
+        "enabled": true,
+        "priority": 10
+      }
+    ]
+  },
+  "resend": {
     "from": "Jeftinko <noreply@jeftinko.rs>",
     "events": {
       "order_placed": {
