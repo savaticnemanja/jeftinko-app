@@ -71,7 +71,7 @@ export default function Sorting() {
             }}
             value={sortBy}
             options={options.map((o) => ({ value: o.code, text: o.name }))}
-            disableDefaultOption={true}
+            disableDefaultOption={false} placeholder={_('Default')}
           />
         </div>
         <div className="sort-direction self-center">

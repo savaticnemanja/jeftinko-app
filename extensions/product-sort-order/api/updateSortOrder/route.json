@@ -1,0 +1,4 @@
+{
+  "methods": ["POST"],
+  "path": "/sort-order/:category_id"
+}
