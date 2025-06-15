@@ -14,7 +14,7 @@ const MAIN_CATEGORIES = [
 ];
 
 const CategoriesQuery = `
-    query {
+  query {
     categories(filters: [{ key: "parent", operation: eq, value: null }]) {
       items { categoryId uuid name urlKey }
     }
@@ -26,7 +26,7 @@ const ProductsQuery = `
     category(id: $id) {
       categoryId
       uuid
-      products(filters: [{key: "limit", operation: eq, value: "2000"}, {key:"ob", operation:eq, value:"id"}]) {
+      products(filters: [{key: "limit", operation: eq, value: "2000"}, {key:"ob", operation:eq, value:"sort_order"}]) {
         items {
           productId
           uuid
@@ -38,7 +38,7 @@ const ProductsQuery = `
       children {
         categoryId
         uuid
-        products(filters: [{key: "limit", operation: eq, value: "2000"}, {key:"ob", operation:eq, value:"id"}]) {
+        products(filters: [{key: "limit", operation: eq, value: "2000"}, {key:"ob", operation:eq, value:"sort_order"}]) {
           items {
             productId
             uuid
@@ -50,7 +50,7 @@ const ProductsQuery = `
         children {
           categoryId
           uuid
-          products(filters: [{key: "limit", operation: eq, value: "2000"}, {key:"ob", operation:eq, value:"id"}]) {
+          products(filters: [{key: "limit", operation: eq, value: "2000"}, {key:"ob", operation:eq, value:"sort_order"}]) {
             items {
               productId
               uuid

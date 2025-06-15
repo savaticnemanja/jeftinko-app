@@ -27,7 +27,6 @@ module.exports = async (request, response) => {
       await update("product")
         .given({ sort_order: i })
         .where("uuid", "=", uuid)
-        .and("category_id", "=", category.category_id)
         .execute(pool);
     }
     response.status(OK);
