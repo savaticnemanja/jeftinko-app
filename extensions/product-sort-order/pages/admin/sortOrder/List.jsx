@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useQuery } from 'urql';
-import PropTypes from 'prop-types';
-import { Card } from '@components/admin/cms/Card';
-import Spinner from '@components/common/Spinner';
+import React, { useEffect, useState } from "react";
+import { useQuery } from "urql";
+import PropTypes from "prop-types";
+import { Card } from "@components/admin/cms/Card";
+import Spinner from "@components/common/Spinner";
 
 const CategoriesQuery = `
   query { 
@@ -17,7 +17,7 @@ const ProductsQuery = `
     category(id: $id) {
       categoryId
       uuid
-      products(filters: [{key: "limit", operation: "eq", value: "1000"}, {key:"ob", operation:"eq", value:"id"}]) {
+      products(filters: [{key: "limit", operation: eq, value: "1000"}, {key:"ob", operation:eq, value:"id"}]) {
         items {
           productId
           uuid
@@ -32,13 +32,19 @@ const ProductsQuery = `
 
 export default function SortOrderList() {
   const [selected, setSelected] = useState(null);
+  const [categoryUuid, setCategoryUuid] = useState(null);
   const [order, setOrder] = useState([]);
 
   const [catResult] = useQuery({ query: CategoriesQuery });
-  const [prodResult, reExec] = useQuery({ query: ProductsQuery, variables: { id: selected }, pause: !selected });
+  const [prodResult, reExec] = useQuery({
+    query: ProductsQuery,
+    variables: { id: selected },
+    pause: !selected,
+  });
 
   useEffect(() => {
     if (prodResult.data) {
+      setCategoryUuid(prodResult.data.category.uuid);
       setOrder(prodResult.data.category.products.items);
     }
   }, [prodResult.data]);
@@ -60,14 +66,14 @@ export default function SortOrderList() {
   };
 
   const saveOrder = async () => {
-    if (!selected) return;
-    await fetch(`/sort-order/${order[0]?.uuid || ''}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    if (!selected || !categoryUuid) return;
+    await fetch(`/api/sort-order/${categoryUuid}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ order: order.map((p) => p.uuid) }),
-      credentials: 'same-origin'
+      credentials: "same-origin",
     });
-    reExec({ requestPolicy: 'network-only' });
+    reExec({ requestPolicy: "network-only" });
   };
 
   if (catResult.fetching) {
@@ -81,13 +87,22 @@ export default function SortOrderList() {
   const categories = catResult.data?.categories.items || [];
 
   return (
-    <Card title="Sort Order" actions={selected ? [{ name: 'Save', onAction: saveOrder }] : []}>
+    <Card
+      title="Sort Order"
+      actions={selected ? [{ name: "Save", onAction: saveOrder }] : []}
+    >
       <Card.Session>
         <div className="mb-4">
-          <select className="form-control" onChange={(e) => setSelected(parseInt(e.target.value, 10))} value={selected || ''}>
+          <select
+            className="form-control"
+            onChange={(e) => setSelected(parseInt(e.target.value, 10))}
+            value={selected || ""}
+          >
             <option value="">Select category</option>
             {categories.map((c) => (
-              <option key={c.categoryId} value={c.categoryId}>{c.name}</option>
+              <option key={c.categoryId} value={c.categoryId}>
+                {c.name}
+              </option>
             ))}
           </select>
         </div>
@@ -107,7 +122,9 @@ export default function SortOrderList() {
                 onDrop={() => onDrop(idx)}
                 className="border border-divider p-2 rounded text-center"
               >
-                {p.image?.url && <img src={p.image.url} alt="" className="mb-2" />}
+                {p.image?.url && (
+                  <img src={p.image.url} alt="" className="mb-2" />
+                )}
                 <div>{p.name}</div>
                 <div>{p.price.regular.text}</div>
               </div>
@@ -120,8 +137,8 @@ export default function SortOrderList() {
 }
 
 export const layout = {
-  areaId: 'content',
-  sortOrder: 10
+  areaId: "content",
+  sortOrder: 10,
 };
 
 export const query = CategoriesQuery;

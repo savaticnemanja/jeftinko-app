@@ -1,8 +1,10 @@
-const { setContextValue } = require('../../../../graphql/services/contextHelper');
+const {
+  setContextValue,
+} = require("@evershop/evershop/src/modules/graphql/services/contextHelper");
 
 module.exports = (request) => {
-  setContextValue(request, 'pageInfo', {
-    title: 'Product Sort Order',
-    description: 'Organize product display order'
+  setContextValue(request, "pageInfo", {
+    title: "Product Sort Order",
+    description: "Organize product display order",
   });
 };

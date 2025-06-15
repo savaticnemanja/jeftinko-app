@@ -1,4 +1,4 @@
-const { execute } = require('@evershop/postgres-query-builder');
+const { execute } = require("@evershop/postgres-query-builder");
 
 module.exports = async (connection) => {
   await execute(
