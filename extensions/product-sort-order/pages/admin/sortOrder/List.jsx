@@ -26,11 +26,12 @@ const ProductsQuery = `
     category(id: $id) {
       categoryId
       uuid
-      products(filters: [{key: "limit", operation: eq, value: "2000"}, {key:"ob", operation:eq, value:"sort_order"}]) {
+      products(filters: [{key: "limit", operation: eq, value: "2000"}, {key:"ob", operation:eq, value:"id"}]) {
       items {
           productId
           uuid
           name
+          sortOrder
           price { regular { text } }
           image { url: thumb }
         }
@@ -38,11 +39,12 @@ const ProductsQuery = `
       children {
         categoryId
         uuid
-        products(filters: [{key: "limit", operation: eq, value: "2000"}, {key:"ob", operation:eq, value:"sort_order"}]) {
+        products(filters: [{key: "limit", operation: eq, value: "2000"}, {key:"ob", operation:eq, value:"id"}]) {
           items {
             productId
             uuid
             name
+            sortOrder
             price { regular { text } }
             image { url: thumb }
           }
@@ -50,11 +52,12 @@ const ProductsQuery = `
         children {
           categoryId
           uuid
-          products(filters: [{key: "limit", operation: eq, value: "2000"}, {key:"ob", operation:eq, value:"sort_order"}]) {
+          products(filters: [{key: "limit", operation: eq, value: "2000"}, {key:"ob", operation:eq, value:"id"}]) {
             items {
               productId
               uuid
               name
+              sortOrder
               price { regular { text } }
               image { url: thumb }
             }
@@ -81,13 +84,14 @@ export default function SortOrderList() {
     if (prodResult.data) {
       setCategoryUuid(prodResult.data.category.uuid);
       const collect = (cat) => {
+        console.log(cat);
         let items = cat.products?.items || [];
         if (cat.children) {
           cat.children.forEach((child) => {
             items = items.concat(collect(child));
           });
         }
-        return items.sort((a, b) => a.sort_order - b.sort_order);
+        return items.sort((a, b) => a.sortOrder - b.sortOrder);
       };
       setOrder(collect(prodResult.data.category));
     }
@@ -161,7 +165,7 @@ export default function SortOrderList() {
           </div>
         )}
         {!prodResult.fetching && order.length > 0 && (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {order.map((p, idx) => (
               <div
                 key={p.uuid}
