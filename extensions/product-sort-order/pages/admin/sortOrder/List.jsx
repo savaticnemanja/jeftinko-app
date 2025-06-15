@@ -27,7 +27,7 @@ const ProductsQuery = `
       categoryId
       uuid
       products(filters: [{key: "limit", operation: eq, value: "2000"}, {key:"ob", operation:eq, value:"sort_order"}]) {
-        items {
+      items {
           productId
           uuid
           name
@@ -87,7 +87,7 @@ export default function SortOrderList() {
             items = items.concat(collect(child));
           });
         }
-        return items;
+        return items.sort((a, b) => a.sort_order - b.sort_order);
       };
       setOrder(collect(prodResult.data.category));
     }
