@@ -4,10 +4,19 @@ import PropTypes from "prop-types";
 import { Card } from "@components/admin/cms/Card";
 import Spinner from "@components/common/Spinner";
 
+const MAIN_CATEGORIES = [
+  "toys",
+  "footwear",
+  "clothing",
+  "formal-wear",
+  "babies",
+  "furniture",
+];
+
 const CategoriesQuery = `
-  query { 
-    categories(filters: []) { 
-      items { categoryId uuid name } 
+    query {
+    categories(filters: [{ key: "parent", operation: eq, value: null }]) {
+      items { categoryId uuid name urlKey }
     }
   }
 `;
@@ -17,13 +26,39 @@ const ProductsQuery = `
     category(id: $id) {
       categoryId
       uuid
-      products(filters: [{key: "limit", operation: eq, value: "1000"}, {key:"ob", operation:eq, value:"id"}]) {
+      products(filters: [{key: "limit", operation: eq, value: "2000"}, {key:"ob", operation:eq, value:"id"}]) {
         items {
           productId
           uuid
           name
           price { regular { text } }
           image { url: thumb }
+        }
+      }
+      children {
+        categoryId
+        uuid
+        products(filters: [{key: "limit", operation: eq, value: "2000"}, {key:"ob", operation:eq, value:"id"}]) {
+          items {
+            productId
+            uuid
+            name
+            price { regular { text } }
+            image { url: thumb }
+          }
+        }
+        children {
+          categoryId
+          uuid
+          products(filters: [{key: "limit", operation: eq, value: "2000"}, {key:"ob", operation:eq, value:"id"}]) {
+            items {
+              productId
+              uuid
+              name
+              price { regular { text } }
+              image { url: thumb }
+            }
+          }
         }
       }
     }
@@ -45,7 +80,16 @@ export default function SortOrderList() {
   useEffect(() => {
     if (prodResult.data) {
       setCategoryUuid(prodResult.data.category.uuid);
-      setOrder(prodResult.data.category.products.items);
+      const collect = (cat) => {
+        let items = cat.products?.items || [];
+        if (cat.children) {
+          cat.children.forEach((child) => {
+            items = items.concat(collect(child));
+          });
+        }
+        return items;
+      };
+      setOrder(collect(prodResult.data.category));
     }
   }, [prodResult.data]);
 
@@ -84,7 +128,12 @@ export default function SortOrderList() {
     );
   }
 
-  const categories = catResult.data?.categories.items || [];
+  const categories = (catResult.data?.categories.items || [])
+    .filter((c) => MAIN_CATEGORIES.includes(c.urlKey))
+    .sort(
+      (a, b) =>
+        MAIN_CATEGORIES.indexOf(a.urlKey) - MAIN_CATEGORIES.indexOf(b.urlKey)
+    );
 
   return (
     <Card
