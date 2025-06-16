@@ -3,6 +3,11 @@ import { useQuery } from "urql";
 import PropTypes from "prop-types";
 import { Card } from "@components/admin/cms/Card";
 import Spinner from "@components/common/Spinner";
+import Area from "@components/common/Area";
+import { Name } from "@components/frontStore/catalog/product/list/item/Name";
+import { Thumbnail } from "@components/frontStore/catalog/product/list/item/Thumbnail";
+import { Price } from "@components/frontStore/catalog/product/list/item/Price";
+import { get } from "@evershop/evershop/src/lib/util/get";
 
 const MAIN_CATEGORIES = [
   "toys",
@@ -28,12 +33,9 @@ const ProductsQuery = `
       uuid
       products(filters: [{key: "limit", operation: eq, value: "2000"}, {key:"ob", operation:eq, value:"id"}]) {
       items {
-          productId
+          ...Product
           uuid
-          name
           sortOrder
-          price { regular { text } }
-          image { url: thumb }
         }
       }
       children {
@@ -41,12 +43,9 @@ const ProductsQuery = `
         uuid
         products(filters: [{key: "limit", operation: eq, value: "2000"}, {key:"ob", operation:eq, value:"id"}]) {
           items {
-            productId
+            ...Product
             uuid
-            name
             sortOrder
-            price { regular { text } }
-            image { url: thumb }
           }
         }
         children {
@@ -54,18 +53,35 @@ const ProductsQuery = `
           uuid
           products(filters: [{key: "limit", operation: eq, value: "2000"}, {key:"ob", operation:eq, value:"id"}]) {
             items {
-              productId
+              ...Product
               uuid
-              name
               sortOrder
-              price { regular { text } }
-              image { url: thumb }
             }
           }
         }
       }
     }
   }
+  fragment Product on Product {
+  productId
+  name
+  sku
+  price {
+    regular {
+      value
+      text
+    }
+    special {
+      value
+      text
+    }
+  }
+  image {
+    alt
+    url: listing
+  }
+  url
+}
 `;
 
 export default function SortOrderList() {
@@ -82,9 +98,9 @@ export default function SortOrderList() {
 
   useEffect(() => {
     if (prodResult.data) {
+      console.log(prodResult.data);
       setCategoryUuid(prodResult.data.category.uuid);
       const collect = (cat) => {
-        console.log(cat);
         let items = cat.products?.items || [];
         if (cat.children) {
           cat.children.forEach((child) => {
@@ -165,7 +181,7 @@ export default function SortOrderList() {
           </div>
         )}
         {!prodResult.fetching && order.length > 0 && (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 lg:gap-24 justify-between">
             {order.map((p, idx) => (
               <div
                 key={p.uuid}
@@ -173,13 +189,38 @@ export default function SortOrderList() {
                 onDragStart={() => onDragStart(idx)}
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={() => onDrop(idx)}
-                className="border border-divider p-2 rounded text-center"
               >
-                {p.image?.url && (
-                  <img src={p.image.url} alt="" className="mb-2" />
-                )}
-                <div>{p.name}</div>
-                <div>{p.price.regular.text}</div>
+                <Area
+                  id="productListingItem"
+                  className="listing-item"
+                  product={p}
+                  coreComponents={[
+                    {
+                      component: { default: Thumbnail },
+                      props: {
+                        url: p.url,
+                        imageUrl: get(p, "image.url"),
+                        alt: p.name,
+                        regular: p.price.regular,
+                        special: p.price.special,
+                      },
+                      sortOrder: 10,
+                      id: "thumbnail",
+                    },
+                    {
+                      component: { default: Name },
+                      props: { name: p.name, url: p.url, id: p.productId },
+                      sortOrder: 20,
+                      id: "name",
+                    },
+                    {
+                      component: { default: Price },
+                      props: { ...p.price },
+                      sortOrder: 30,
+                      id: "price",
+                    },
+                  ]}
+                />
               </div>
             ))}
           </div>

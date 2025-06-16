@@ -22,7 +22,7 @@ module.exports = async (request, response) => {
       response.status(INVALID_PAYLOAD);
       return response.json({ success: false, message: "Invalid order" });
     }
-    for (let i = 1; i < order.length; i += 1) {
+    for (let i = 0; i < order.length; i += 1) {
       const uuid = order[i];
       await update("product")
         .given({ sort_order: i })
