@@ -24,10 +24,20 @@ module.exports = async (request, response) => {
     }
     for (let i = 0; i < order.length; i += 1) {
       const uuid = order[i];
-      await update("product")
-        .given({ sort_order: i })
+      const product = await select("variant_group_id")
+        .from("product")
         .where("uuid", "=", uuid)
-        .execute(pool);
+        .load(pool);
+
+      const query = update("product").given({ sort_order: i });
+
+      if (product && product.variant_group_id) {
+        query.where("variant_group_id", "=", product.variant_group_id);
+      } else {
+        query.where("uuid", "=", uuid);
+      }
+
+      await query.execute(pool);
     }
     response.status(OK);
     response.json({ success: true });

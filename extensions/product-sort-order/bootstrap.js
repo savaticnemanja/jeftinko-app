@@ -29,8 +29,8 @@ module.exports = () => {
     "productCollectionSortBy",
     (map) => {
       return Object.assign(map, {
-        id: (query) => query.orderBy("product.sort_order"),
-        sort_order: (query) => query.orderBy("product.sort_order"),
+        id: (query) => query.orderBy("product.sort_order", "ASC"),
+        sort_order: (query) => query.orderBy("product.sort_order", "ASC"),
       });
     },
     5
