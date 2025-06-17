@@ -181,7 +181,7 @@ export default function SortOrderList() {
           </div>
         )}
         {!prodResult.fetching && order.length > 0 && (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 lg:gap-24 justify-between">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 lg:gap-24 justify-between">
             {order.map((p, idx) => (
               <div
                 key={p.uuid}
