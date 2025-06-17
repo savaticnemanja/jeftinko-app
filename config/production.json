@@ -43,6 +43,12 @@
         "resolve": "node_modules/@evershop/resend",
         "enabled": true,
         "priority": 10
+      },
+      {
+        "name": "product-sort-order",
+        "resolve": "extensions/product-sort-order",
+        "enabled": true,
+        "priority": 40
       }
     ]
   },
