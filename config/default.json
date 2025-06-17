@@ -71,5 +71,21 @@
         "templatePath": "config/emails/welcome.html"
       }
     }
+  },
+  "oms": {
+    "carriers": {
+      "bex": {
+        "name": "BEX",
+        "trackingUrl": "https://bexexpress.rs/pracenje-posiljke"
+      },
+      "postexpress": {
+        "name": "PostExpress",
+        "trackingUrl": "https://www.posta.rs/lat/alati/pracenje-posiljke.aspx"
+      },
+      "dexpress": {
+        "name": "DExpress",
+        "trackingUrl": "https://www.dexpress.rs/rs/pracenje-posiljaka/{trackingNumber}"
+      }
+    }
   }
 }
