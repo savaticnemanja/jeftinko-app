@@ -54,7 +54,7 @@
   },
   "resend": {
     "from": "Jeftinko <noreply@jeftinko.rs>",
-    "admin_email": "savatic.nemanja@gmail.com",
+    "admin_email": "jeftinkoo@yahoo.com",
     "admin_subject": "Nova porudžbina",
     "events": {
       "order_placed": {
