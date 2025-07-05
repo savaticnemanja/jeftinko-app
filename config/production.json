@@ -27,6 +27,12 @@
     "theme": "jeftinko",
     "extensions": [
       {
+        "name": "resend",
+        "resolve": "extensions/resend",
+        "enabled": true,
+        "priority": 10
+      },
+      {
         "name": "pages",
         "resolve": "extensions/pages",
         "enabled": true,
@@ -37,12 +43,6 @@
         "resolve": "extensions/product-old-price",
         "enabled": true,
         "priority": 30
-      },
-      {
-        "name": "resend",
-        "resolve": "extensions/resend",
-        "enabled": true,
-        "priority": 10
       },
       {
         "name": "product-sort-order",
