@@ -43,6 +43,12 @@
         "resolve": "extensions/resend",
         "enabled": true,
         "priority": 10
+      },
+      {
+        "name": "product-sort-order",
+        "resolve": "extensions/product-sort-order",
+        "enabled": true,
+        "priority": 40
       }
     ]
   },
@@ -68,6 +74,22 @@
         "subject": "Dobrodošli u Jeftinko svet!",
         "enabled": true,
         "templatePath": "config/emails/welcome.html"
+      }
+    }
+  },
+  "oms": {
+    "carriers": {
+      "bex": {
+        "name": "BEX",
+        "trackingUrl": "https://bexexpress.rs/pracenje-posiljke"
+      },
+      "postexpress": {
+        "name": "PostExpress",
+        "trackingUrl": "https://www.posta.rs/lat/alati/pracenje-posiljke.aspx"
+      },
+      "dexpress": {
+        "name": "DExpress",
+        "trackingUrl": "https://www.dexpress.rs/rs/pracenje-posiljaka/{trackingNumber}"
       }
     }
   }
