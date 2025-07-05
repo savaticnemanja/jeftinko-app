@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "@evershop/evershop": "1.2.2",
-    "@evershop/resend": "^1.1.0",
-    "lottie-react": "^2.4.1"
+    "handlebars": "^4.7.8",
+    "lottie-react": "^2.4.1",
+    "resend": "^4.6.0"
   }
 }

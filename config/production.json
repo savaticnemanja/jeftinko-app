@@ -40,7 +40,7 @@
       },
       {
         "name": "resend",
-        "resolve": "node_modules/@evershop/resend",
+        "resolve": "extensions/resend",
         "enabled": true,
         "priority": 10
       }
@@ -48,11 +48,16 @@
   },
   "resend": {
     "from": "Jeftinko <noreply@jeftinko.rs>",
+    "admin_email": "savatic.nemanja@gmail.com",
+    "admin_subject": "Nova porudžbina",
     "events": {
       "order_placed": {
         "subject": "Povrda porudžbine",
         "enabled": true,
         "templatePath": "config/emails/order_confirmation.html"
+      },
+      "order_admin_notifier": {
+        "templatePath": "config/emails/order_admin_notifier.html"
       },
       "reset_password": {
         "subject": "Promeni lozinku",
