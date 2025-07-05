@@ -9,7 +9,6 @@ COPY translations ./translations
 COPY extensions ./extensions
 COPY config ./config
 COPY media ./media
-COPY public ./public
 COPY translations ./translations
 
 RUN npm install
