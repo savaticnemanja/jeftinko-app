@@ -53,7 +53,7 @@
     ]
   },
   "resend": {
-    "from": "Jeftinko <noreply@jeftinko.rs>",
+    "from": "Mini Bambini <noreply@minibambini.rs>",
     "admin_email": "jeftinkoo@yahoo.com",
     "admin_subject": "Nova porudžbina",
     "events": {
@@ -71,7 +71,7 @@
         "templatePath": "config/emails/reset_password.html"
       },
       "customer_registered": {
-        "subject": "Dobrodošli u Jeftinko svet!",
+        "subject": "Dobrodošli u Mini Bambini svet!",
         "enabled": true,
         "templatePath": "config/emails/welcome.html"
       }

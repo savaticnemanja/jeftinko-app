@@ -26,7 +26,7 @@ export default function Mascot() {
     };
 
     const handlePriceSelect = (maxPrice) => {
-        let url = `https://jeftinko.rs/${category}`;
+        let url = `https://minibambini.rs/${category}`;
         if (maxPrice !== null) {
             url += `?max_price=${maxPrice}`;
         }

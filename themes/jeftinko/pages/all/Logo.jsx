@@ -3,9 +3,9 @@ import React from "react";
 function Logo() {
   return (
     <div>
-        <a href="/">
-          <img src="/logo.svg" alt="Logo" className="header-logo"/>
-        </a>
+      <a href="/">
+        <img src="/Logo.svg" alt="Logo" className="header-logo" />
+      </a>
     </div>
   );
 }
