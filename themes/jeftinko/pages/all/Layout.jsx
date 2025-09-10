@@ -73,7 +73,7 @@ export default function Layout({ menu: { items }, setting}) {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10 lg:gap-24 py-8">
             <div className="flex flex-col space-y-5">
               <a href="/">
-                <img src="/logo.svg" alt="Logo"/>
+                <img src="/Logo.svg" alt="Logo"/>
               </a>
             </div>
             <div className="flex flex-col space-y-5">
