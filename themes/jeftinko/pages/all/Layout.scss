@@ -201,7 +201,7 @@ h6 {
 }
 
 .social-wrapper {
-  height: 48px;
+  height: 36px;
   background-color: #0050A0;
 }
 
@@ -283,11 +283,11 @@ button.outline {
 
 .header-logo {
   width: 280px;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 
   @media only screen and (max-width: 768px) {
     width: 180px;
-    margin-bottom: 2.4rem;
+    margin-bottom: 0.2rem;
   }
 }
 
