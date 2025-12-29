@@ -16,7 +16,7 @@ services:
     depends_on:
       - db
     ports:
-      - 8081:3000
+      - 127.0.0.1:8085:3000
     volumes:
       - media-data:/app/media
 
